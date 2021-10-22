@@ -23,14 +23,17 @@ To run the analysis, you will need to have Docker installed (https://docs.docker
 First, navigate to the `bios-611-project/` directory in the command line.     
 
 Before running anything, you will need to build the container with the following command:     
-
-``docker build . -t project-env``     
+```
+docker build . -t project-env
+```     
 
 **Run an Rstudio server**     
 
 To run an Rstudio server, run the following command. Note that `your_password_here` should be replaced with your own unique password before running.     
 
-``docker run -e PASSWORD=your_password_here --rm -p 8787:8787 -v $(pwd):/home/rstudio -t project-env``     
+```
+docker run -e PASSWORD=your_password_here --rm -p 8787:8787 -v $(pwd):/home/rstudio -t project-env
+```     
 
 Then, to connect to the machine on port 8787, enter localhost:8787 in your browser.
 
