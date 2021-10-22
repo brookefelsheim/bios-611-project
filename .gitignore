@@ -1,4 +1,3 @@
-# R specific files
 .Rhistory
 .Rapp.history
 .RData
@@ -11,3 +10,5 @@
 *.utf8.md
 *.knit.md
 .Renviron
+.config/
+.local/
