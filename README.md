@@ -22,6 +22,8 @@ To run the analysis, you will need to have Docker installed (https://docs.docker
 
 First, navigate to the `bios-611-project/` directory in the command line.     
 
+**Build docker container**     
+
 Before running anything, you will need to build the container with the following command:     
 ```
 docker build . -t project-env
