@@ -37,6 +37,6 @@ To run an Rstudio server, run the following command. Note that `your_password_he
 docker run -e PASSWORD=your_password_here --rm -p 8787:8787 -v $(pwd):/home/rstudio -t project-env
 ```     
 
-Then, to connect to the machine on port 8787, enter localhost:8787 in your browser.
+Then, to connect to the machine on port 8787, enter localhost:8787 in your browser. Enter rstudio as the username along with the unique password you created.
 
 
