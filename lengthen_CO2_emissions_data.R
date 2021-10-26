@@ -1,4 +1,9 @@
 library(tidyverse)
+
+if(!dir.exists("derived_data")) {
+	dir.create("derived_data")
+}
+
 CO2_emissions <- read_csv("source_data/Air and Climate/CO2_Emissions.csv", 
                 skip = 1, na = "...") %>%
   select(-1) %>%
