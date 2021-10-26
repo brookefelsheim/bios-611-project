@@ -12,3 +12,4 @@
 .Renviron
 .config/
 .local/
+.DS_store
