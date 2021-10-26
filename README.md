@@ -6,16 +6,18 @@ This project is an analysis of global environmental indicator data. This reposit
 ## Source data
 The data used in this analysis come from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics and were downloaded via Kaggle: https://www.kaggle.com/ruchi798/global-environmental-indicators (last updated June 5, 2021). This dataset contains many types of environmental indicators, including:     
 
-	* Air and Climate
-	* Biodiversity
-	* Energy and Minerals
-	* Forest
-	* Governance
-	* Inland Water Resources
-	* Land and Agriculture
-	* Marine and Coastal Areas
-	* Natural Disasters
-	* Waste
+	* Air and Climate     
+	* Biodiversity     
+	* Energy and Minerals     
+	* Forest      
+	* Governance     
+	* Inland Water Resources     
+	* Land and Agriculture     
+	* Marine and Coastal Areas     
+	* Natural Disasters     
+	* Waste     
+	    
+This environmental indicator data is available for many different countries.
 
 ## Usage
 To run the analysis, you will need to have Docker installed (https://docs.docker.com/get-docker/) as well as the ability to run Docker as your current user.     
@@ -41,6 +43,7 @@ Then, to connect to the machine on port 8787, enter localhost:8787 in your brows
 
 **Run the Rshiny app**     
 
+This project contains an interactive Rshiny app that plots CO2 emissions by year for a country of interest selected via a drop-down menu.     
 To run the Rshiny app, first start an Rstudio server by following the above instructions. Then, run the following command in your Rstudio terminal to run the Rshiny app:
 ```
 PORT=8080 make shiny_app
