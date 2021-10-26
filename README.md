@@ -44,6 +44,7 @@ Then, to connect to the machine on port 8787, enter localhost:8787 in your brows
 **Run the Rshiny app**     
 
 This project contains an interactive Rshiny app that plots CO2 emissions by year for a country of interest selected via a drop-down menu.     
+
 To run the Rshiny app, first start an Rstudio server by following the above instructions. Then, run the following command in your Rstudio terminal to run the Rshiny app:
 ```
 PORT=8080 make shiny_app
