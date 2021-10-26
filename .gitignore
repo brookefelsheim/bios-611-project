@@ -13,3 +13,5 @@
 .config/
 .local/
 .DS_store
+.bash_history
+derived_data
