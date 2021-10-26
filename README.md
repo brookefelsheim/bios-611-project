@@ -51,4 +51,14 @@ PORT=8080 make shiny_app
 ```
 Then, connect to the machine on port 8080 by entering localhost:8080 in your browser.
 
+**Run a bash shell**     
+
+To run a bash shell, run the following command.     
+
+```
+docker run -v $(pwd):/home/rstudio/project -it project-env sudo -H -u rstudio /bin/bash
+```
+
+To navigate to the project data, run `cd home/rstudio/project/`.     
+
 
