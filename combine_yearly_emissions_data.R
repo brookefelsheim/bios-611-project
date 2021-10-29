@@ -66,7 +66,7 @@ long_GHG_emissions <- read_csv("source_data/Air and Climate/GHG_emissions.csv",
   rename(Country = "...2") %>%
   select(Country:`2018`) %>%
   pivot_longer(!Country, names_to = "Year", 
-               values_to = "All greenhouse gases") %>%
+               values_to = "All greenhouse gasses") %>%
   mutate(Year = as.numeric(Year)) %>%
   filter(!is.na(`All greenhouse gasses`))
 
