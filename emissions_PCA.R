@@ -16,6 +16,8 @@ yearly_emissions_full <-
   filter(!is.na(CH4) & !is.na(CO2) & !is.na(N2O) & !is.na(NOx) &
            !is.na(SO2) & !is.na(`All greenhouse gasses`))
 
+pc <- prcomp(yearly_emissions_full[,-1:-2])
+
 con <- file("logs/emissions_pc_summary.txt")
 sink(con, append=TRUE)
 summary(pc)
