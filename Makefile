@@ -7,7 +7,9 @@ clean:
 .PHONY: all
 all: derived_data/yearly_emissions.csv\
 	figures/emissions_pc_plot.png\
-	logs/emissions_pc_summary.txt
+	logs/emissions_pc_summary.txt\
+	figures/ghg_emissions_trends_top_10_plot.png\
+	logs/top_10_countries_emissions.txt
 
 .PHONY: shiny_app
 shiny_app: derived_data/yearly_emissions.csv scripts/shiny_app.R
