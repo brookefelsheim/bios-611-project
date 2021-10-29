@@ -34,4 +34,5 @@ pc_data <- cbind(yearly_emissions_full, pc$x) %>% as_tibble() %>%
 pc_plot <- ggplot(pc_data, aes(PC1,PC2)) + geom_point(aes(color = Country)) +
   ggtitle("Yearly Greenhouse Gas Emissions Data PC Plot")
 
-ggsave("figures/emissions_pc_plot.png", plot = pc_plot)
+ggsave("figures/emissions_pc_plot.png", 
+       width = 10, height = 6, plot = pc_plot)
