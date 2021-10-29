@@ -20,3 +20,6 @@ derived_data/yearly_emissions.csv: source_data/Air\ and\ Climate/CH4_emissions.c
 	combine_yearly_emissions_data.R
 	Rscript combine_yearly_emissions_data.R
 
+figures/emissions_pc_plot.png logs/emissions_pc_summary.txt:\
+	derived_data/yearly_emissions.csv emissions_PCA.R
+	Rscript emissions_PCA.R
