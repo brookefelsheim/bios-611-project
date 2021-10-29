@@ -41,24 +41,24 @@ docker run -e PASSWORD=your_password_here --rm -p 8787:8787 -p 8080:8080 -v $(pw
 
 Then, to connect to the machine on port 8787, enter localhost:8787 in your browser. Enter rstudio as the username along with the unique password you created.
 
-**Run the Rshiny app**     
-
-This project contains an interactive Rshiny app that plots CO2 emissions by year for a country of interest selected via a drop-down menu.     
-
-To run the Rshiny app, first start an Rstudio server by following the above instructions. Then, run the following command in your Rstudio terminal to run the Rshiny app:
-```
-PORT=8080 make shiny_app
-```
-Then, connect to the machine on port 8080 by entering localhost:8080 in your browser.
-
 **Run a bash shell**     
 
 To run a bash shell, run the following command.     
 
 ```
-docker run -v $(pwd):/home/rstudio/project -it project-env sudo -H -u rstudio /bin/bash
+docker run -v $(pwd):/home/rstudio/project -p 8080:8080 -it project-env sudo -H -u rstudio /bin/bash
 ```
 
-To navigate to the project data, run `cd home/rstudio/project/`.     
+To navigate to the project data, run `cd home/rstudio/project/`.   
+
+**Run the Rshiny app**     
+
+This project contains an interactive Rshiny app that plots CO2 emissions by year for a country of interest selected via a drop-down menu.     
+
+To run the Rshiny app, first run a bash shell or an Rstudio server by following the above instructions. Then, run the following command in your Rstudio terminal to run the Rshiny app:
+```
+PORT=8080 make shiny_app
+```
+Then, connect to the machine on port 8080 by entering localhost:8080 in your browser.
 
 
