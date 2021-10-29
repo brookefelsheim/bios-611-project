@@ -19,7 +19,7 @@ The data used in this analysis come from the United Nations Statistics Division 
 	    
 This environmental indicator data is available for many different countries.
 
-## Usage
+## Docker
 To run the analysis, you will need to have Docker installed (https://docs.docker.com/get-docker/) as well as the ability to run Docker as your current user.     
 
 First, navigate to the `bios-611-project/` directory in the command line.     
@@ -51,14 +51,32 @@ docker run -v $(pwd):/home/rstudio/project -p 8080:8080 -it project-env sudo -H 
 
 To navigate to the project data, run `cd home/rstudio/project/`.   
 
-**Run the Rshiny app**     
+## Makefile
+All derived datasets and figures for this project can be found in the Makefile.    
 
-This project contains an interactive Rshiny app that plots CO2 emissions by year for a country of interest selected via a drop-down menu.     
+To utilize the Makefile to build these elements from the source data, first follow the instructions above to either run a bash shell or Rstudio instance. Then, follow the below instructions on how to use the Makefile.
 
-To run the Rshiny app, first run a bash shell or an Rstudio server by following the above instructions. Then, run the following command in your Rstudio terminal to run the Rshiny app:
+**Make an individual derived dataset or figure**     
+
+To make an individual derived dataset or source figure from the source data, run the following command in your terminal, substituting `derived_data/long_CO2_emissions.csv` for the dataset or figure of interest.     
+```
+make derived_data/long_CO2_emissions.csv
+```
+
+**Make the Rshiny app**
+
+This project contains an interactive Rshiny app that plots CO2 emissions by year for a country of interest selected via a drop-down menu. To run the Rshiny app, run the following command in your terminal:
 ```
 PORT=8080 make shiny_app
 ```
 Then, connect to the machine on port 8080 by entering localhost:8080 in your browser.
+
+**Clean all derived data**
+
+To clean all of the derived datasets and figures from your repository, run the following command in your terminal:
+```
+make clean
+```
+This will permanently delete all derived datasets and figures you've generated.
 
 
