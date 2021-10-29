@@ -10,8 +10,8 @@ all: derived_data/yearly_emissions.csv\
 	logs/emissions_pc_summary.txt
 
 .PHONY: shiny_app
-shiny_app: derived_data/yearly_emissions.csv shiny_app.R
-	Rscript shiny_app.R ${PORT}
+shiny_app: derived_data/yearly_emissions.csv scripts/shiny_app.R
+	Rscript scripts/shiny_app.R ${PORT}
 
 derived_data/yearly_emissions.csv:\
 	source_data/Air\ and\ Climate/CH4_emissions.csv\
@@ -20,9 +20,9 @@ derived_data/yearly_emissions.csv:\
 	source_data/Air\ and\ Climate/NOX_emissions.csv\
 	source_data/Air\ and\ Climate/SO2_emissions.csv\
 	source_data/Air\ and\ Climate/GHG_emissions.csv\
-	combine_yearly_emissions_data.R
-	Rscript combine_yearly_emissions_data.R
+	scripts/combine_yearly_emissions_data.R
+	Rscript scripts/combine_yearly_emissions_data.R
 
 figures/emissions_pc_plot.png logs/emissions_pc_summary.txt:\
-	derived_data/yearly_emissions.csv emissions_PCA.R
-	Rscript emissions_PCA.R
+	derived_data/yearly_emissions.csv scripts/emissions_PCA.R
+	Rscript scripts/emissions_PCA.R
