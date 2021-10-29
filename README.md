@@ -46,10 +46,8 @@ Then, to connect to the machine on port 8787, enter localhost:8787 in your brows
 To run a bash shell, run the following command.     
 
 ```
-docker run -v $(pwd):/home/rstudio/project -p 8080:8080 -it project-env sudo -H -u rstudio /bin/bash
+docker run -v $(pwd):/home/rstudio/project -p 8080:8080 -it project-env sudo -H -u rstudio /bin/bash -c "cd ~/project/; /bin/bash"
 ```
-
-To navigate to the project data, run `cd home/rstudio/project/`.   
 
 ## Makefile
 All derived datasets and figures for this project can be found in the Makefile.    
