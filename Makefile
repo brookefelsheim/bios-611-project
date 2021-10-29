@@ -5,13 +5,16 @@ clean:
 	rm -rf logs/
 
 .PHONY: all
-all: derived_data/long_CO2_emissions.csv
+all: derived_data/yearly_emissions.csv\
+	figures/emissions_pc_plot.png\
+	logs/emissions_pc_summary.txt
 
 .PHONY: shiny_app
 shiny_app: derived_data/yearly_emissions.csv shiny_app.R
 	Rscript shiny_app.R ${PORT}
 
-derived_data/yearly_emissions.csv: source_data/Air\ and\ Climate/CH4_emissions.csv\
+derived_data/yearly_emissions.csv:\
+	source_data/Air\ and\ Climate/CH4_emissions.csv\
 	source_data/Air\ and\ Climate/CO2_emissions.csv\
 	source_data/Air\ and\ Climate/N2O_emissions.csv\
 	source_data/Air\ and\ Climate/NOX_emissions.csv\
