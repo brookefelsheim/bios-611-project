@@ -1,6 +1,8 @@
 .PHONY: clean
 clean:
 	rm -rf derived_data/
+	rm -rf figures/
+	rm -rf logs/
 
 .PHONY: all
 all: derived_data/long_CO2_emissions.csv
