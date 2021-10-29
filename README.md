@@ -54,9 +54,16 @@ All derived datasets and figures for this project can be found in the Makefile.
 
 To utilize the Makefile to build these elements from the source data, first follow the instructions above to either run a bash shell or Rstudio instance. Then, follow the below instructions on how to use the Makefile.
 
+**Make all derived datasets and figrues**    
+
+To make all of the derived datasets and figures for this analysis from the source data (excluding the Rshiny app - see instructions for running that below), run the following command in your terminal:
+```
+make all
+```
+
 **Make an individual derived dataset or figure**     
 
-To make an individual derived dataset or source figure from the source data, run the following command in your terminal, substituting `derived_data/long_CO2_emissions.csv` for the dataset or figure of interest.     
+To make an individual derived dataset or source figure from the source data, run the following command in your terminal, substituting `derived_data/long_CO2_emissions.csv` for the dataset or figure of interest:     
 ```
 make derived_data/long_CO2_emissions.csv
 ```
