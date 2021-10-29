@@ -3,8 +3,7 @@ clean:
 	rm -rf derived_data/
 
 .PHONY: all
-all:
-	derived_data/long_CO2_emissions.csv
+all: derived_data/long_CO2_emissions.csv
 
 .PHONY: shiny_app
 shiny_app: derived_data/long_CO2_emissions.csv shiny_app.R
