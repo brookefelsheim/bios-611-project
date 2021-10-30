@@ -28,7 +28,7 @@ ghg_plot <- ggplot(long_yearly_emissions %>%
        aes(x = Year, y = Emissions)) + 
   geom_point(aes(color = Country)) + 
   geom_line(aes(color = Country)) + theme_bw() + 
-  ggtitle("Greenhouse gass emission trends for top 10 emitting countries")
+  ggtitle("Greenhouse gas emission trends for top 10 emitting countries")
 
 ggsave("figures/ghg_emissions_trends_top_10_plot.png", 
        width = 10, height = 6, plot = ghg_plot)
