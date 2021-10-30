@@ -1,0 +1,19 @@
+---
+title: "Project Report"
+author: "Brooke Felsheim"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+The future existence of humankind is dependent on our ability to live sustainably. As human populations rise along with greenhouse gas emissions, deforestation rates, and generation of waste, we will continue to deplete natural resources, disrupt ecosystems, and increase global temperatures, leading to an unsustainable future. Because of this, it is critical to study environmental indicators to assess the current state and trajectory of the environment.    
+
+## Air and Climate Data
+
+![Emissions PCA]("figures/emissions_pc_plot.png")
+
+![Emissions over time]("figures/ghg_emissions_trends_top_10_plot.png")
