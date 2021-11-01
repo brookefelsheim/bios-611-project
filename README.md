@@ -56,16 +56,16 @@ To utilize the Makefile to build these elements from the source data, first foll
 
 **Make all derived datasets and figrues**    
 
-To make all of the derived datasets and figures for this analysis from the source data (excluding the Rshiny app - see instructions for running that below), run the following command in your terminal:
+To make the report and all of the derived datasets, figures, and logs for this analysis from the source data (excluding the Rshiny app - see instructions for running that below), run the following command in your terminal:
 ```
 make all
 ```
 
-**Make an individual derived dataset or figure**     
+**Make an individual file**     
 
-To make an individual derived dataset or source figure from the source data, run the following command in your terminal, substituting `derived_data/long_CO2_emissions.csv` for the dataset or figure of interest:     
+To make an individual file of interest from the source data that is listed as a target in the Makefile, run the following command in your terminal, substituting `figures/emissions_pc_plot.png` for the file of interest:     
 ```
-make derived_data/long_CO2_emissions.csv
+make figures/emissions_pc_plot.png
 ```
 
 **Make the Rshiny app**
@@ -78,10 +78,10 @@ Then, connect to the machine on port 8080 by entering localhost:8080 in your bro
 
 **Clean all derived data**
 
-To clean all of the derived datasets and figures from your repository, run the following command in your terminal:
+To clean all of the derived files (datasets, figures, logs) from your repository, run the following command in your terminal:
 ```
 make clean
 ```
-This will permanently delete all derived datasets and figures you've generated.
+This will permanently delete all derived data that is not the source data.
 
 
