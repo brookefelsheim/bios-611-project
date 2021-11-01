@@ -3,9 +3,11 @@ clean:
 	rm -rf derived_data/
 	rm -rf figures/
 	rm -rf logs/
+	rm -f report.pdf
 
 .PHONY: all
-all: derived_data/yearly_emissions.csv\
+all: report.pdf\
+	derived_data/yearly_emissions.csv\
 	figures/emissions_pc_plot.png\
 	logs/emissions_pc_summary.txt\
 	figures/ghg_emissions_trends_top_10_plot.png\
