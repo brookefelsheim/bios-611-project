@@ -2,6 +2,7 @@ library(tidyverse)
 library(shiny)
 
 yearly_emissions <- read_csv("derived_data/yearly_emissions.csv")
+long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
 
 long_yearly_emissions <- yearly_emissions %>%
   pivot_longer(cols = -c(Country, Year), names_to = "Type", 
@@ -13,7 +14,8 @@ ui <- fluidPage(
               label = "Choose a country to display",
               choices = unique(long_yearly_emissions$Country),
               selected = "United States of America"),
-  plotOutput("emissions_plot")
+  plotOutput("emissions_plot"),
+  plotOutput("sector_plot")
 )
 
 server <- function(input, output) {
@@ -27,6 +29,18 @@ server <- function(input, output) {
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 18, face="bold"),
             title = element_text(size = 20),
+            legend.text = element_text(size = 16)))
+  output$sector_plot <- renderPlot(
+    ggplot(long_sector_emissions %>%
+             filter(Country == input$country),
+           aes(x = "", y = Percent, fill = Type)) +
+      geom_bar(stat="identity", width=1, color="white") +
+      coord_polar("y", start=0) +
+      theme_void() +
+      geom_text(aes(label = Percent),
+                position = position_stack(vjust = 0.5)) +
+      ggtitle(paste0("Greenhouse Gas Emissions by Sector (%)\n", input$country)) +
+      theme(title = element_text(size = 20),
             legend.text = element_text(size = 16)))
 }
 

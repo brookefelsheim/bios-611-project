@@ -8,13 +8,16 @@ clean:
 .PHONY: all
 all: report.pdf\
 	derived_data/yearly_emissions.csv\
+	derived_data/long_sector_emissions.csv\
 	figures/emissions_pc_plot.png\
 	logs/emissions_pc_summary.txt\
 	figures/ghg_emissions_trends_top_10_plot.png\
 	logs/top_10_countries_emissions.txt
 
 .PHONY: shiny_app
-shiny_app: derived_data/yearly_emissions.csv scripts/shiny_app.R
+shiny_app: derived_data/yearly_emissions.csv\
+	derived_data/long_sector_emissions.csv\
+	scripts/shiny_app.R
 	Rscript scripts/shiny_app.R ${PORT}
 
 report.pdf: report.Rmd figures/emissions_pc_plot.png\
@@ -31,6 +34,11 @@ derived_data/yearly_emissions.csv:\
 	source_data/air_and_climate/ghg_emissions.csv\
 	scripts/combine_yearly_emissions_data.R
 	Rscript scripts/combine_yearly_emissions_data.R
+
+derived_data/long_sector_emissions.csv:\
+	source_data/air_and_climate/ghg_emissions_by_sector.csv\
+	scripts/lengthen_sector_emissions.R
+	Rscript scripts/lengthen_sector_emissions.R
 
 figures/emissions_pc_plot.png logs/emissions_pc_summary.txt:\
 	derived_data/yearly_emissions.csv scripts/emissions_PCA.R
