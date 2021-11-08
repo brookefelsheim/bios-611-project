@@ -19,6 +19,7 @@ shiny_app: derived_data/yearly_emissions.csv scripts/shiny_app.R
 
 report.pdf: report.Rmd figures/emissions_pc_plot.png\
 	figures/ghg_emissions_trends_top_10_plot.png
+	Rscript -e "if (!tinytex::is_tinytex()) {tinytex::install_tinytex()}"
 	Rscript -e "rmarkdown::render('report.Rmd',output_format='pdf_document')"
 
 derived_data/yearly_emissions.csv:\
