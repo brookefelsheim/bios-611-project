@@ -8,7 +8,7 @@ if(!dir.exists("derived_data")) {
 long_CH4_emissions <- read_csv("source_data/air_and_climate/ch4_emissions.csv",
                                skip = 1, na = "...") %>%
   select(-1) %>%
-  rename(Country = "...2") %>%
+  rename(Country = 1) %>%
   select(Country:`2018`) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "CH4") %>%
@@ -19,7 +19,7 @@ long_CH4_emissions <- read_csv("source_data/air_and_climate/ch4_emissions.csv",
 long_CO2_emissions <- read_csv("source_data/air_and_climate/co2_emissions.csv", 
                           skip = 1, na = "...") %>%
   select(-1) %>%
-  rename(Country = "...2") %>%
+  rename(Country = 1) %>%
   select(Country:`2018`) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "CO2") %>%
@@ -30,7 +30,7 @@ long_CO2_emissions <- read_csv("source_data/air_and_climate/co2_emissions.csv",
 long_N2O_emissions <- read_csv("source_data/air_and_climate/n2o_emissions.csv", 
                                skip = 1, na = "...") %>%
   select(-1) %>%
-  rename(Country = "...2") %>%
+  rename(Country = 1) %>%
   select(Country:`2018`) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "N2O") %>%
@@ -41,7 +41,7 @@ long_N2O_emissions <- read_csv("source_data/air_and_climate/n2o_emissions.csv",
 long_NOx_emissions <- read_csv("source_data/air_and_climate/nox_emissions.csv", 
                                skip = 1, na = c("...", "", "…")) %>%
   select(-1) %>%
-  rename(Country = "...2") %>%
+  rename(Country = 1) %>%
   select(Country:`2018`) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "NOx") %>%
@@ -52,7 +52,7 @@ long_NOx_emissions <- read_csv("source_data/air_and_climate/nox_emissions.csv",
 long_SO2_emissions <- read_csv("source_data/air_and_climate/so2_emissions.csv", 
                                skip = 1, na = c("...", "", "…")) %>%
   select(-1) %>%
-  rename(Country = "...2") %>%
+  rename(Country = 1) %>%
   select(Country:`2018`) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "SO2") %>%
@@ -63,7 +63,7 @@ long_SO2_emissions <- read_csv("source_data/air_and_climate/so2_emissions.csv",
 long_GHG_emissions <- read_csv("source_data/air_and_climate/ghg_emissions.csv", 
                                skip = 1, na = c("...", "", "…")) %>%
   select(-1) %>%
-  rename(Country = "...2") %>%
+  rename(Country = 1) %>%
   select(Country:`2018`) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "All greenhouse gasses") %>%
