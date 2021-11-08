@@ -22,12 +22,12 @@ report.pdf: report.Rmd figures/emissions_pc_plot.png\
 	Rscript -e "rmarkdown::render('report.Rmd',output_format='pdf_document')"
 
 derived_data/yearly_emissions.csv:\
-	source_data/Air\ and\ Climate/CH4_emissions.csv\
-	source_data/Air\ and\ Climate/CO2_emissions.csv\
-	source_data/Air\ and\ Climate/N2O_emissions.csv\
-	source_data/Air\ and\ Climate/NOX_emissions.csv\
-	source_data/Air\ and\ Climate/SO2_emissions.csv\
-	source_data/Air\ and\ Climate/GHG_emissions.csv\
+	source_data/air_and_climate/ch4_emissions.csv\
+	source_data/air_and_climate/co2_emissions.csv\
+	source_data/air_and_climate/n2o_emissions.csv\
+	source_data/air_and_climate/nox_emissions.csv\
+	source_data/air_and_climate/so2_emissions.csv\
+	source_data/air_and_climate/ghg_emissions.csv\
 	scripts/combine_yearly_emissions_data.R
 	Rscript scripts/combine_yearly_emissions_data.R
 
