@@ -1,21 +1,26 @@
 library(tidyverse)
 library(shiny)
 
+# Load in datasets
 yearly_emissions <- read_csv("derived_data/yearly_emissions.csv")
-long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
-long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
-yearly_hazardous_waste <- read_csv("derived_data/yearly_hazardous_waste.csv")
-
 long_yearly_emissions <- yearly_emissions %>%
   pivot_longer(cols = -c(Country, Year), names_to = "Type", 
                values_to = "Emissions") %>%
   filter(!is.na(Emissions))
 
+long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
+
+long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
+
+yearly_hazardous_waste <- read_csv("derived_data/yearly_hazardous_waste.csv")
 long_yearly_hazardous_waste <- yearly_hazardous_waste %>%
   pivot_longer(cols = -c(Country, Year), names_to = "Category",
                values_to = "Tonnes") %>%
   filter(!is.na(Tonnes))
 
+long_yearly_municipal_recycled <- read_csv("derived_data/long_yearly_municipal_recycled.csv")
+
+# User interface
 ui <- fluidPage(
   selectInput("country", 
               label = "Choose a country to display",
@@ -24,9 +29,11 @@ ui <- fluidPage(
   plotOutput("emissions_plot", width = 820),
   plotOutput("sector_plot", width = 720),
   plotOutput("forest_area_plot", width = 650),
-  plotOutput("hazardous_waste_plot", width = 820)
+  plotOutput("hazardous_waste_plot", width = 820),
+  plotOutput("municipal_recycled_plot", width = 650)
 )
 
+# Server
 server <- function(input, output) {
   
   output$emissions_plot <- renderPlot(
@@ -76,6 +83,17 @@ server <- function(input, output) {
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20),
             legend.text = element_text(size = 16)))
+  
+  output$municipal_recycled_plot <- renderPlot(
+    ggplot(long_yearly_municipal_recycled %>%
+             filter(Country == input$country),
+           aes(x = Year, y = Percent)) +
+      geom_point(color="#00B9E3") + geom_line(color="#00B9E3") + 
+      ylab("Municipal Waste Recycled (%)") + theme_bw() +
+      ggtitle(paste0("Percentage of Municipal Waste Recycled by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20)))
 }
 
 # Start the Server
