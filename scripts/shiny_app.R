@@ -18,6 +18,12 @@ long_natural_disaster_occurrences <- natural_disaster_occurrences %>%
                values_to = "Occurrences") %>%
   filter(!is.na(Occurrences))
 
+natural_disaster_deaths <- read_csv("derived_data/natural_disaster_deaths.csv")
+long_natural_disaster_deaths <- natural_disaster_deaths %>%
+  pivot_longer(cols = -c(Country, `Year range`), names_to = "Type", 
+               values_to = "Deaths") %>%
+  filter(!is.na(Deaths))
+
 yearly_hazardous_waste <- read_csv("derived_data/yearly_hazardous_waste.csv")
 long_yearly_hazardous_waste <- yearly_hazardous_waste %>%
   pivot_longer(cols = -c(Country, Year), names_to = "Category",
@@ -56,6 +62,7 @@ ui <- fluidPage(
       plotOutput("forest_area_plot", width = 650),
       h3("Natural Disasters"),
       plotOutput("natural_disaster_occurrences_plot", width = 820),
+      plotOutput("natural_disaster_deaths_plot", width = 820),
       h3("Waste"),
       plotOutput("hazardous_waste_plot", width = 820),
       plotOutput("municipal_recycled_plot", width = 650)
@@ -108,6 +115,17 @@ server <- function(input, output) {
            aes(x = `Year range`, fill = Type, y = Occurrences)) + 
       geom_bar(stat = "identity") + 
       ggtitle(paste0("Natural Disaster Occurrences by Year Range\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20),
+            legend.text = element_text(size = 16)))
+  
+  output$natural_disaster_deaths_plot <- renderPlot(
+    ggplot(long_natural_disaster_deaths %>%
+             filter(Country == input$country),
+           aes(x = `Year range`, fill = Type, y = Deaths)) + 
+      geom_bar(stat = "identity") + 
+      ggtitle(paste0("Natural Disaster Deaths by Year Range\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20),
