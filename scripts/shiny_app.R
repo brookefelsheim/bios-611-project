@@ -4,11 +4,17 @@ library(shiny)
 yearly_emissions <- read_csv("derived_data/yearly_emissions.csv")
 long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
 long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
+yearly_hazardous_waste <- read_csv("derived_data/yearly_hazardous_waste.csv")
 
 long_yearly_emissions <- yearly_emissions %>%
   pivot_longer(cols = -c(Country, Year), names_to = "Type", 
                values_to = "Emissions") %>%
   filter(!is.na(Emissions))
+
+long_yearly_hazardous_waste <- yearly_hazardous_waste %>%
+  pivot_longer(cols = -c(Country, Year), names_to = "Category",
+               values_to = "Tonnes") %>%
+  filter(!is.na(Tonnes))
 
 ui <- fluidPage(
   selectInput("country", 
@@ -17,7 +23,8 @@ ui <- fluidPage(
               selected = "United States of America"),
   plotOutput("emissions_plot", width = 820),
   plotOutput("sector_plot", width = 720),
-  plotOutput("forest_area_plot", width = 600)
+  plotOutput("forest_area_plot", width = 600),
+  plotOutput("hazardous_waste_plot", width = 820)
 )
 
 server <- function(input, output) {
@@ -30,7 +37,7 @@ server <- function(input, output) {
       ylab("Emissions\n(1000 tonnes of CO2 equivalent)") +
       ggtitle(paste0("Greenhouse Gas Emissions by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
-            axis.title = element_text(size = 18, face="bold"),
+            axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20),
             legend.text = element_text(size = 16)))
   
@@ -55,8 +62,20 @@ server <- function(input, output) {
       ylab("Total Forest Area\n(1000 ha)") + theme_bw() +
       ggtitle(paste0("Forest Area by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
-            axis.title = element_text(size = 18, face="bold"),
+            axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20)))
+  
+  output$hazardous_waste_plot <- renderPlot(
+    ggplot(long_yearly_hazardous_waste %>%
+             filter(Country == input$country),
+           aes(x = Year, y = Tonnes)) +
+      geom_point(aes(color=Category)) + geom_line(aes(color=Category)) + theme_bw() +
+      ylab("Tonnes") +
+      ggtitle(paste0("Hazardous Waste Category by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20),
+            legend.text = element_text(size = 16)))
 }
 
 # Start the Server
