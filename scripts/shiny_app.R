@@ -12,6 +12,12 @@ long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
 
 long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
 
+natural_disaster_occurrences <- read_csv("derived_data/natural_disaster_occurrences.csv")
+long_natural_disaster_occurrences <- natural_disaster_occurrences %>%
+  pivot_longer(cols = -c(Country, `Year range`), names_to = "Type", 
+               values_to = "Occurrences") %>%
+  filter(!is.na(Occurrences))
+
 yearly_hazardous_waste <- read_csv("derived_data/yearly_hazardous_waste.csv")
 long_yearly_hazardous_waste <- yearly_hazardous_waste %>%
   pivot_longer(cols = -c(Country, Year), names_to = "Category",
@@ -48,6 +54,8 @@ ui <- fluidPage(
       plotOutput("sector_plot", width = 720),
       h3("Forests"),
       plotOutput("forest_area_plot", width = 650),
+      h3("Natural Disasters"),
+      plotOutput("natural_disaster_occurrences_plot", width = 820),
       h3("Waste"),
       plotOutput("hazardous_waste_plot", width = 820),
       plotOutput("municipal_recycled_plot", width = 650)
@@ -87,19 +95,30 @@ server <- function(input, output) {
     ggplot(long_yearly_forest_area %>%
              filter(Country == input$country),
            aes(x = Year, y = Area)) +
-      geom_point(color="#148242") + geom_line(color="#148242") + 
+      geom_point(color="#00BA38") + geom_line(color="#00BA38") + 
       ylab("Total Forest Area\n(1000 ha)") + theme_bw() +
       ggtitle(paste0("Forest Area by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20)))
   
+  output$natural_disaster_occurrences_plot <- renderPlot(
+    ggplot(long_natural_disaster_occurrences %>%
+             filter(Country == input$country),
+           aes(x = `Year range`, fill = Type, y = Occurrences)) + 
+      geom_bar(stat = "identity") + 
+      ggtitle(paste0("Natural Disaster Occurrences by Year Range\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20),
+            legend.text = element_text(size = 16)))
+  
   output$hazardous_waste_plot <- renderPlot(
     ggplot(long_yearly_hazardous_waste %>%
              filter(Country == input$country),
            aes(x = Year, y = Tonnes)) +
       geom_point(aes(color=Category)) + geom_line(aes(color=Category)) + theme_bw() +
-      ylab("Tonnes") +
+      ylab("Amount of Hazardous Waste\n(Tonnes)") +
       ggtitle(paste0("Hazardous Waste Category by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
@@ -111,7 +130,7 @@ server <- function(input, output) {
              filter(Country == input$country),
            aes(x = Year, y = Percent)) +
       geom_point(color="#00B9E3") + geom_line(color="#00B9E3") + 
-      ylab("Municipal Waste Recycled (%)") + theme_bw() +
+      ylab("Municipal Waste Recycled\n(%)") + theme_bw() +
       ggtitle(paste0("Percentage of Municipal Waste Recycled by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
