@@ -15,4 +15,4 @@ long_yearly_energy_per_capita <- yearly_energy_per_capita %>%
                values_to = "Energy per capita") %>%
   filter(!is.na(`Energy per capita`))
 
-write_csv(long_energy_per_capita, "derived_data/long_yearly_energy_per_capita.csv")
+write_csv(long_yearly_energy_per_capita, "derived_data/long_yearly_energy_per_capita.csv")
