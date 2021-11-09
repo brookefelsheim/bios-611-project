@@ -20,10 +20,10 @@ ui <- fluidPage(
   selectInput("country", 
               label = "Choose a country to display",
               choices = unique(long_yearly_emissions$Country),
-              selected = "United States of America"),
+              selected = "Sweden"),
   plotOutput("emissions_plot", width = 820),
   plotOutput("sector_plot", width = 720),
-  plotOutput("forest_area_plot", width = 600),
+  plotOutput("forest_area_plot", width = 650),
   plotOutput("hazardous_waste_plot", width = 820)
 )
 
