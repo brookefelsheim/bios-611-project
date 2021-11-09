@@ -15,6 +15,7 @@ all: report.pdf\
 	derived_data/natural_disaster_occurrences.csv\
 	derived_data/natural_disaster_deaths.csv\
 	derived_data/long_yearly_energy_per_capita.csv\
+	derived_data/long_yearly_renewable_percentage.csv\
 	figures/emissions_pc_plot.png\
 	logs/emissions_pc_summary.txt\
 	figures/ghg_emissions_trends_top_10_plot.png\
@@ -29,6 +30,7 @@ shiny_app: derived_data/yearly_emissions.csv\
 	derived_data/natural_disaster_occurrences.csv\
 	derived_data/natural_disaster_deaths.csv\
 	derived_data/long_yearly_energy_per_capita.csv\
+	derived_data/long_yearly_renewable_percentage.csv\
 	scripts/shiny_app.R
 	Rscript scripts/shiny_app.R ${PORT}
 
@@ -92,6 +94,11 @@ derived_data/long_yearly_energy_per_capita.csv:\
 	source_data/energy_and_minerals/energy_supply_per_capita.csv\
 	scripts/lengthen_yearly_energy_per_capita.R
 	Rscript scripts/lengthen_yearly_energy_per_capita.R
+
+derived_data/long_yearly_renewable_percentage.csv:\
+	source_data/energy_and_minerals/renewable_elec_production_percentage.csv\
+	scripts/lengthen_yearly_renewable_percentage.R
+	Rscript scripts/lengthen_yearly_renewable_percentage.R
 
 figures/emissions_pc_plot.png logs/emissions_pc_summary.txt:\
 	derived_data/yearly_emissions.csv scripts/emissions_PCA.R

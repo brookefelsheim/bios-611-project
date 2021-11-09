@@ -12,6 +12,8 @@ long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
 
 long_yearly_energy_per_capita <- read_csv("derived_data/long_yearly_energy_per_capita.csv")
 
+long_yearly_renewable_percentage <- read_csv("derived_data/long_yearly_renewable_percentage.csv")
+
 long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
 
 natural_disaster_occurrences <- read_csv("derived_data/natural_disaster_occurrences.csv")
@@ -62,6 +64,7 @@ ui <- fluidPage(
       plotOutput("sector_plot", width = 720),
       h3("Energy"),
       plotOutput("energy_per_capita_plot", width = 650),
+      plotOutput("renewable_percentage_plot", width = 650),
       h3("Forests"),
       plotOutput("forest_area_plot", width = 650),
       h3("Natural Disasters"),
@@ -109,6 +112,17 @@ server <- function(input, output) {
       geom_point(color="#D39200") + geom_line(color="#D39200") + 
       ylab("Energy Supply per Capita\n(Gigajoules per capita)") + theme_bw() +
       ggtitle(paste0("Energy Supply per Capita by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20)))
+  
+  output$renewable_percentage_plot <- renderPlot(
+    ggplot(long_yearly_renewable_percentage %>%
+             filter(Country == input$country),
+           aes(x = Year, y = Percent)) +
+      geom_point(color="#D39200") + geom_line(color="#D39200") + 
+      ylab("Renewable Energy\n(% of total energy production)") + theme_bw() +
+      ggtitle(paste0("Renewable Energy Production Percentage by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20)))
