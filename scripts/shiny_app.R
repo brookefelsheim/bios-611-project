@@ -16,6 +16,8 @@ long_yearly_renewable_percentage <- read_csv("derived_data/long_yearly_renewable
 
 long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
 
+long_yearly_precipitation <- read_csv("derived_data/long_yearly_precipitation.csv")
+
 natural_disaster_occurrences <- read_csv("derived_data/natural_disaster_occurrences.csv")
 long_natural_disaster_occurrences <- natural_disaster_occurrences %>%
   pivot_longer(cols = -c(Country, `Year range`), names_to = "Type", 
@@ -67,6 +69,8 @@ ui <- fluidPage(
       plotOutput("renewable_percentage_plot", width = 650),
       h3("Forests"),
       plotOutput("forest_area_plot", width = 650),
+      h3("Inland Water Resources"),
+      plotOutput("precipitation_plot", width = 650),
       h3("Natural Disasters"),
       plotOutput("natural_disaster_occurrences_plot", width = 820),
       plotOutput("natural_disaster_deaths_plot", width = 820),
@@ -134,6 +138,17 @@ server <- function(input, output) {
       geom_point(color="#00BA38") + geom_line(color="#00BA38") + 
       ylab("Total Forest Area\n(1000 ha)") + theme_bw() +
       ggtitle(paste0("Forest Area by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20)))
+  
+  output$precipitation_plot <- renderPlot(
+    ggplot(long_yearly_precipitation %>%
+             filter(Country == input$country),
+           aes(x = Year, y = Amount)) +
+      geom_point(color="#00B9E3") + geom_line(color="#00B9E3") + 
+      ylab("Amount of Precipitation\n(Million cubic metres)") + theme_bw() +
+      ggtitle(paste0("Amount of Precipitation by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20)))
