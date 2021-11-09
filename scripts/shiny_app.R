@@ -10,6 +10,8 @@ long_yearly_emissions <- yearly_emissions %>%
 
 long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
 
+long_yearly_energy_per_capita <- read_csv("derived_data/long_yearly_energy_per_capita.csv")
+
 long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
 
 natural_disaster_occurrences <- read_csv("derived_data/natural_disaster_occurrences.csv")
@@ -58,6 +60,8 @@ ui <- fluidPage(
       h3("Air and Climate"),
       plotOutput("emissions_plot", width = 820),
       plotOutput("sector_plot", width = 720),
+      h3("Energy"),
+      plotOutput("energy_per_capita_plot", width = 650),
       h3("Forests"),
       plotOutput("forest_area_plot", width = 650),
       h3("Natural Disasters"),
@@ -97,6 +101,17 @@ server <- function(input, output) {
       ggtitle(paste0("Greenhouse Gas Emissions by Sector (%)\n", input$country)) +
       theme(title = element_text(size = 20),
             legend.text = element_text(size = 16)))
+  
+  output$energy_per_capita_plot <- renderPlot(
+    ggplot(long_yearly_energy_per_capita %>%
+             filter(Country == input$country),
+           aes(x = Year, y = `Energy per capita`)) +
+      geom_point(color="#D39200") + geom_line(color="#D39200") + 
+      ylab("Energy Supply per Capita\n(Gigajoules per capita)") + theme_bw() +
+      ggtitle(paste0("Energy Supply per Capita by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20)))
   
   output$forest_area_plot <- renderPlot(
     ggplot(long_yearly_forest_area %>%
