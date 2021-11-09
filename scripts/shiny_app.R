@@ -22,15 +22,37 @@ long_yearly_municipal_recycled <- read_csv("derived_data/long_yearly_municipal_r
 
 # User interface
 ui <- fluidPage(
-  selectInput("country", 
-              label = "Choose a country to display",
-              choices = unique(long_yearly_emissions$Country),
-              selected = "Sweden"),
-  plotOutput("emissions_plot", width = 820),
-  plotOutput("sector_plot", width = 720),
-  plotOutput("forest_area_plot", width = 650),
-  plotOutput("hazardous_waste_plot", width = 820),
-  plotOutput("municipal_recycled_plot", width = 650)
+  tags$head(
+    tags$style(HTML(
+      "h2 {
+        font-weight: bold;
+      }
+      h3 {
+        font-weight: bold;
+        text-decoration: underline;
+      }"))
+  ),
+  titlePanel("Environmental Indicator Data by Country"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("country", 
+                  label = "Choose a country to display",
+                  choices = unique(long_yearly_emissions$Country),
+                  selected = "Sweden"),
+      p("This shiny app displays enviromental indicator data from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics for 192 countries. Please note that not every country has data available for each type of environmental indicator displayed. If a country is missing data for a particular type of plot, that plot will be blank."),
+      width = 3, fluid = FALSE
+    ),
+    mainPanel(
+      h3("Air and Climate"),
+      plotOutput("emissions_plot", width = 820),
+      plotOutput("sector_plot", width = 720),
+      h3("Forests"),
+      plotOutput("forest_area_plot", width = 650),
+      h3("Waste"),
+      plotOutput("hazardous_waste_plot", width = 820),
+      plotOutput("municipal_recycled_plot", width = 650)
+    )
+  )
 )
 
 # Server
