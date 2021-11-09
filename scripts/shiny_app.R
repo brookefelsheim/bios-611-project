@@ -3,6 +3,7 @@ library(shiny)
 
 yearly_emissions <- read_csv("derived_data/yearly_emissions.csv")
 long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
+long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
 
 long_yearly_emissions <- yearly_emissions %>%
   pivot_longer(cols = -c(Country, Year), names_to = "Type", 
@@ -14,11 +15,13 @@ ui <- fluidPage(
               label = "Choose a country to display",
               choices = unique(long_yearly_emissions$Country),
               selected = "United States of America"),
-  plotOutput("emissions_plot"),
-  plotOutput("sector_plot")
+  plotOutput("emissions_plot", width = 820),
+  plotOutput("sector_plot", width = 720),
+  plotOutput("forest_area_plot", width = 600)
 )
 
 server <- function(input, output) {
+  
   output$emissions_plot <- renderPlot(
     ggplot(long_yearly_emissions %>%
              filter(Country == input$country),
@@ -30,6 +33,7 @@ server <- function(input, output) {
             axis.title = element_text(size = 18, face="bold"),
             title = element_text(size = 20),
             legend.text = element_text(size = 16)))
+  
   output$sector_plot <- renderPlot(
     ggplot(long_sector_emissions %>%
              filter(Country == input$country),
@@ -42,6 +46,17 @@ server <- function(input, output) {
       ggtitle(paste0("Greenhouse Gas Emissions by Sector (%)\n", input$country)) +
       theme(title = element_text(size = 20),
             legend.text = element_text(size = 16)))
+  
+  output$forest_area_plot <- renderPlot(
+    ggplot(long_yearly_forest_area %>%
+             filter(Country == input$country),
+           aes(x = Year, y = Area)) +
+      geom_point(color="#148242") + geom_line(color="#148242") + 
+      ylab("Total Forest Area\n(1000 ha)") + theme_bw() +
+      ggtitle(paste0("Forest Area by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 18, face="bold"),
+            title = element_text(size = 20)))
 }
 
 # Start the Server
