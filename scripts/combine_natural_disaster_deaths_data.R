@@ -1,14 +1,14 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("derived_data")) {
-  dir.create("derived_data")
-}
+ensure_dir("derived_data")
 
 # Climatological deaths
 long_climatological_deaths <- read_csv("source_data/natural_disasters/climatological_disasters.csv",
                                             na = c("...", "…", "")) %>%
   select(c(2, 6:8)) %>%
   rename(Country = `Countries or areas`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990-1999` = `Total deaths 1990-1999`) %>%
   rename(`2000-2009` = `Total deaths 2000-2009`) %>%
   rename(`2010-2019` = `Total deaths 2010-2019`) %>%
@@ -21,6 +21,7 @@ long_geophysical_deaths <- read_csv("source_data/natural_disasters/geophysical_d
                                          na = c("...", "…", "")) %>%
   select(c(2, 6:8)) %>%
   rename(Country = `Countries or areas`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990-1999` = `Total deaths 1990-1999`) %>%
   rename(`2000-2009` = `Total deaths 2000-2009`) %>%
   rename(`2010-2019` = `Total deaths 2010-2019`) %>%
@@ -33,6 +34,7 @@ long_hydrological_deaths <- read_csv("source_data/natural_disasters/hydrological
                                           na = c("...", "…", "")) %>%
   select(c(2, 6:8)) %>%
   rename(Country = `Countries or areas`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990-1999` = `Total deaths 1990-1999`) %>%
   rename(`2000-2009` = `Total deaths 2000-2009`) %>%
   rename(`2010-2019` = `Total deaths 2010-2019`) %>%
@@ -45,6 +47,7 @@ long_meteorogical_deaths <- read_csv("source_data/natural_disasters/meteorologic
                                           na = c("...", "…", "")) %>%
   select(c(2, 6:8)) %>%
   rename(Country = `Countries or areas`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990-1999` = `Total deaths 1990-1999`) %>%
   rename(`2000-2009` = `Total deaths 2000-2009`) %>%
   rename(`2010-2019` = `Total deaths 2010-2019`) %>%

@@ -1,14 +1,14 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("derived_data")) {
-  dir.create("derived_data")
-}
+ensure_dir("derived_data")
 
 yearly_precipitation <- read_csv("source_data/inland_water_resources/precipitation.csv",
                                      na = c("...", "")) 
 
 long_yearly_precipitation <- yearly_precipitation %>%
   select(2:30) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   filter(!is.na(Country)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "Amount") %>%

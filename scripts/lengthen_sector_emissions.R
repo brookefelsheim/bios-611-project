@@ -1,13 +1,13 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("derived_data")) {
-  dir.create("derived_data")
-}
+ensure_dir("derived_data")
 
 sector_emissions <- read_csv("source_data/air_and_climate/ghg_emissions_by_sector.csv",
                              na = "...") 
 
 long_sector_emissions <- sector_emissions %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(Energy = `GHG from energy, as percentage to total`) %>%
   rename(`Industrial processes` = `GHG from industrial processes and product use, as percentage to total`) %>%
   rename(Agriculture = `GHG from agriculture, as percentage to total`) %>%

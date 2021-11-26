@@ -1,14 +1,14 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("derived_data")) {
-  dir.create("derived_data")
-}
+ensure_dir("derived_data")
 
 forest_area <- read_csv("source_data/forests/forest_area.csv",
                              na = c("...", "…")) 
 
 long_yearly_forest_area <- forest_area %>%
   rename(Country = `Country and Area`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990` = `Forest Area, 1990 (1000 ha)`) %>%
   rename(`2000` = `Forest Area, 2000 (1000 ha)`) %>%
   rename(`2010` = `Forest Area, 2010 (1000 ha)`) %>%

@@ -1,13 +1,13 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("derived_data")) {
-  dir.create("derived_data")
-}
+ensure_dir("derived_data")
 
 # Hazardous waste generated
 long_hazardous_waste_generated <- read_csv("source_data/waste/hazardous_waste_generated.csv",
                                na = c("...", "…", "")) %>%
   select(2:26) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "Generated") %>%
   mutate(Year = as.numeric(Year)) %>%
@@ -17,6 +17,7 @@ long_hazardous_waste_generated <- read_csv("source_data/waste/hazardous_waste_ge
 long_hazardous_waste_incinerated <- read_csv("source_data/waste/hazardous_waste_incinerated.csv",
                                            na = c("...", "…", "")) %>%
   select(2:26) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "Incinerated") %>%
   mutate(Year = as.numeric(Year)) %>%
@@ -26,6 +27,7 @@ long_hazardous_waste_incinerated <- read_csv("source_data/waste/hazardous_waste_
 long_hazardous_waste_landfilled <- read_csv("source_data/waste/hazardous_waste_landfilled.csv",
                                            na = c("...", "…", "")) %>%
   select(2:26) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "Landfilled") %>%
   mutate(Year = as.numeric(Year)) %>%
@@ -35,6 +37,7 @@ long_hazardous_waste_landfilled <- read_csv("source_data/waste/hazardous_waste_l
 long_hazardous_waste_recycled <- read_csv("source_data/waste/hazardous_waste_recycled.csv",
                                             na = c("...", "…", "")) %>%
   select(2:26) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "Recycled") %>%
   mutate(Year = as.numeric(Year)) %>%
@@ -44,6 +47,7 @@ long_hazardous_waste_recycled <- read_csv("source_data/waste/hazardous_waste_rec
 long_hazardous_waste_treated_or_disposed <- read_csv("source_data/waste/hazardous_waste_treated_or_disposed.csv",
                                           na = c("...", "…", "")) %>%
   select(2:26) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "Treated or disposed") %>%
   mutate(Year = as.numeric(Year)) %>%

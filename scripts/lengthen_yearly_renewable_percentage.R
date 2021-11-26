@@ -1,8 +1,7 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("derived_data")) {
-  dir.create("derived_data")
-}
+ensure_dir("derived_data")
 
 yearly_renewable_percentage <- read_csv("source_data/energy_and_minerals/renewable_elec_production_percentage.csv",
                                      na = c("...", "")) 
@@ -10,6 +9,7 @@ yearly_renewable_percentage <- read_csv("source_data/energy_and_minerals/renewab
 long_yearly_renewable_percentage <- yearly_renewable_percentage %>%
   select(2:30) %>%
   rename(Country = `Country and area`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   filter(!is.na(Country)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "Percent") %>%

@@ -1,15 +1,10 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("figures")) {
-  dir.create("figures")
-}
-
-if(!dir.exists("logs")) {
-  dir.create("logs")
-}
+ensure_dir("figures")
+ensure_dir("logs")
 
 yearly_emissions <- read_csv("derived_data/yearly_emissions.csv")
-
 
 yearly_emissions_full <- 
   yearly_emissions %>% 

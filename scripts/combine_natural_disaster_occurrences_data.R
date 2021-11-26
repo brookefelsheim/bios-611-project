@@ -1,14 +1,14 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("derived_data")) {
-  dir.create("derived_data")
-}
+ensure_dir("derived_data")
 
 # Climatological occurrences
 long_climatological_occurrences <- read_csv("source_data/natural_disasters/climatological_disasters.csv",
                                            na = c("...", "…", "")) %>%
   select(2:5) %>%
   rename(Country = `Countries or areas`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990-1999` = `Occurrence 1990-1999`) %>%
   rename(`2000-2009` = `Occurrence 2000-2009`) %>%
   rename(`2010-2019` = `Occurrence 2010-2019`) %>%
@@ -21,6 +21,7 @@ long_geophysical_occurrences <- read_csv("source_data/natural_disasters/geophysi
                                             na = c("...", "…", "")) %>%
   select(2:5) %>%
   rename(Country = `Countries or areas`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990-1999` = `Occurrence 1990-1999`) %>%
   rename(`2000-2009` = `Occurrence 2000-2009`) %>%
   rename(`2010-2019` = `Occurrence 2010-2019`) %>%
@@ -33,6 +34,7 @@ long_hydrological_occurrences <- read_csv("source_data/natural_disasters/hydrolo
                                          na = c("...", "…", "")) %>%
   select(2:5) %>%
   rename(Country = `Countries or areas`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990-1999` = `Occurrence 1990-1999`) %>%
   rename(`2000-2009` = `Occurrence 2000-2009`) %>%
   rename(`2010-2019` = `Occurrence 2010-2019`) %>%
@@ -45,6 +47,7 @@ long_meteorogical_occurrences <- read_csv("source_data/natural_disasters/meteoro
                                           na = c("...", "…", "")) %>%
   select(2:5) %>%
   rename(Country = `Countries or areas`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(`1990-1999` = `Occurrence 1990-1999`) %>%
   rename(`2000-2009` = `Occurrence 2000-2009`) %>%
   rename(`2010-2019` = `Occurrence 2010-2019`) %>%

@@ -1,8 +1,7 @@
 library(tidyverse)
+source("scripts/helper_functions.R")
 
-if(!dir.exists("derived_data")) {
-  dir.create("derived_data")
-}
+ensure_dir("derived_data")
 
 ##### Air and climate data
 
@@ -10,6 +9,7 @@ if(!dir.exists("derived_data")) {
 ch4 <- read_csv("source_data/air_and_climate/ch4_emissions.csv",
                 skip = 1, na = c("...", "", "…")) %>%
   rename(Country = 2) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(CH4_per_capita_emissions = kg) %>%
   select(Country, CH4_per_capita_emissions) %>%
   filter(!is.na(Country))
@@ -18,6 +18,7 @@ ch4 <- read_csv("source_data/air_and_climate/ch4_emissions.csv",
 co2 <- read_csv("source_data/air_and_climate/co2_emissions.csv",
                 skip = 1, na = c("...", "", "…")) %>%
   rename(Country = 2) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(CO2_per_capita_emissions = kg) %>%
   select(Country, CO2_per_capita_emissions) %>%
   filter(!is.na(Country))
@@ -26,6 +27,7 @@ co2 <- read_csv("source_data/air_and_climate/co2_emissions.csv",
 n2o <- read_csv("source_data/air_and_climate/n2o_emissions.csv",
                 skip = 1, na = c("...", "", "…")) %>%
   rename(Country = 2) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(N2O_per_capita_emissions = kg) %>%
   select(Country, N2O_per_capita_emissions) %>%
   filter(!is.na(Country))
@@ -34,6 +36,7 @@ n2o <- read_csv("source_data/air_and_climate/n2o_emissions.csv",
 nox <- read_csv("source_data/air_and_climate/nox_emissions.csv",
                 skip = 1, na = c("...", "", "…")) %>%
   rename(Country = 2) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(NOx_per_capita_emissions = kg) %>%
   select(Country, NOx_per_capita_emissions) %>%
   filter(!is.na(Country))
@@ -42,6 +45,7 @@ nox <- read_csv("source_data/air_and_climate/nox_emissions.csv",
 so2 <- read_csv("source_data/air_and_climate/so2_emissions.csv",
                 skip = 1, na = c("...", "", "…")) %>%
   rename(Country = 2) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(SO2_per_capita_emissions = 35) %>%
   select(Country, SO2_per_capita_emissions) %>%
   filter(!is.na(Country))
@@ -50,6 +54,7 @@ so2 <- read_csv("source_data/air_and_climate/so2_emissions.csv",
 ghg <- read_csv("source_data/air_and_climate/ghg_emissions.csv",
                 skip = 1, na = c("...", "", "…")) %>%
   rename(Country = 2) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(GHG_per_capita_emissions = 35) %>%
   select(Country, GHG_per_capita_emissions) %>%
   filter(!is.na(Country))
@@ -57,6 +62,7 @@ ghg <- read_csv("source_data/air_and_climate/ghg_emissions.csv",
 # GHG emissions by sector, latest year (percent of total)
 sector_emissions <- read_csv("source_data/air_and_climate/ghg_emissions_by_sector.csv",
                              na = c("...", "", "…")) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(Energy_percent_emissions = `GHG from energy, as percentage to total`) %>%
   rename(Industrial_percent = `GHG from industrial processes and product use, as percentage to total`) %>%
   rename(Agriculture_percent_emissions = `GHG from agriculture, as percentage to total`) %>%
@@ -71,6 +77,7 @@ sector_emissions <- read_csv("source_data/air_and_climate/ghg_emissions_by_secto
 protected_areas <- read_csv("source_data/biodiversity/terrestrial_marine_protected_areas.csv",
                             na = c("...", "", "…")) %>%
   rename(Country = `Country and area`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(Protected_area_percent = 4) %>%
   select(Country, Protected_area_percent) %>%
   filter(!is.na(Country))
@@ -82,6 +89,7 @@ protected_areas <- read_csv("source_data/biodiversity/terrestrial_marine_protect
 energy <- read_csv("source_data/energy_and_minerals/energy_indicators.csv",
                    na = c("...", "", "…")) %>%
   rename(Country = `Country and area`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(Energy_per_capita = 4) %>%
   rename(Renewable_energy_percent = 5) %>%
   select(Country, Energy_per_capita, Renewable_energy_percent) %>%
@@ -93,6 +101,7 @@ energy <- read_csv("source_data/energy_and_minerals/energy_indicators.csv",
 forest_area <- read_csv("source_data/forests/forest_area.csv",
                         na = c("...", "", "…")) %>%
   rename(Country = `Country and Area`) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(Forest_area_percent = 9) %>%
   select(Country, Forest_area_percent) %>%
   filter(!is.na(Country))
@@ -104,6 +113,7 @@ agricultural_area <- read_csv("source_data/land_and_agriculture/agricultural_lan
                               na = c("...", "", "…")) %>%
   rename(Agricultural_area_percent = 4) %>%
   select(Country, Agricultural_area_percent) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   filter(!is.na(Country))
 
 ##### Waste
@@ -113,11 +123,13 @@ municipal_collection <- read_csv("source_data/waste/municipal_waste_collection_(
                                  na = c("...", "", "…")) %>%
   rename(Waste_collected_per_capita = 10) %>%
   select(Country, Waste_collected_per_capita) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   filter(!is.na(Country))
 
 # Municipal waste treatment per capita served, latest year (%)
 municipal_treatment <- read_csv("source_data/waste/municipal_waste_treatment_(latest_year).csv",
                                 na = c("...", "", "…")) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   rename(Waste_landfilled_percent = 6) %>%
   rename(Waste_incinerated_percent = 8) %>%
   rename(Waste_recycled_percent = 10) %>%
