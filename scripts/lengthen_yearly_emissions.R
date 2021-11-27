@@ -9,4 +9,4 @@ long_yearly_emissions <- yearly_emissions %>%
                values_to = "Emissions") %>%
   filter(!is.na(Emissions))
 
-write_csv(long_sector_emissions, "derived_data/long_yearly_emissions.csv")
+write_csv(long_yearly_emissions, "derived_data/long_yearly_emissions.csv")
