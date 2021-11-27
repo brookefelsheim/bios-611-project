@@ -12,6 +12,7 @@ all: report.pdf\
 	derived_data/long_sector_emissions.csv\
 	derived_data/long_yearly_forest_area.csv\
 	derived_data/yearly_hazardous_waste.csv\
+	derived_data/long_yearly_hazardous_waste.csv\
 	derived_data/long_yearly_municipal_recycled.csv\
 	derived_data/natural_disaster_occurrences.csv\
 	derived_data/long_natural_disaster_occurrences.csv\
@@ -29,7 +30,7 @@ all: report.pdf\
 shiny_app: derived_data/long_yearly_emissions.csv\
 	derived_data/long_sector_emissions.csv\
 	derived_data/long_yearly_forest_area.csv\
-	derived_data/yearly_hazardous_waste.csv\
+	derived_data/long_yearly_hazardous_waste.csv\
 	derived_data/long_yearly_municipal_recycled.csv\
 	derived_data/long_natural_disaster_occurrences.csv\
 	derived_data/long_natural_disaster_deaths.csv\
@@ -78,6 +79,11 @@ derived_data/yearly_hazardous_waste.csv:\
 	source_data/waste/hazardous_waste_treated_or_disposed.csv\
 	scripts/combine_yearly_hazardous_waste_data.R
 	Rscript scripts/combine_yearly_hazardous_waste_data.R
+
+derived_data/long_yearly_hazardous_waste.csv:\
+	derived_data/yearly_hazardous_waste.csv\
+	scripts/lengthen_yearly_hazardous_waste.R
+	Rscript scripts/lengthen_yearly_hazardous_waste.R
 
 derived_data/long_yearly_municipal_recycled.csv:\
 	source_data/waste/percentage_of_municipal_waste_collected_which_is_recycled.csv\
