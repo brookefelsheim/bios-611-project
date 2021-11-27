@@ -14,6 +14,7 @@ all: report.pdf\
 	derived_data/yearly_hazardous_waste.csv\
 	derived_data/long_yearly_municipal_recycled.csv\
 	derived_data/natural_disaster_occurrences.csv\
+	derived_data/long_natural_disaster_occurrences.csv\
 	derived_data/natural_disaster_deaths.csv\
 	derived_data/long_yearly_energy_per_capita.csv\
 	derived_data/long_yearly_renewable_percentage.csv\
@@ -29,7 +30,7 @@ shiny_app: derived_data/long_yearly_emissions.csv\
 	derived_data/long_yearly_forest_area.csv\
 	derived_data/yearly_hazardous_waste.csv\
 	derived_data/long_yearly_municipal_recycled.csv\
-	derived_data/natural_disaster_occurrences.csv\
+	derived_data/long_natural_disaster_occurrences.csv\
 	derived_data/natural_disaster_deaths.csv\
 	derived_data/long_yearly_energy_per_capita.csv\
 	derived_data/long_yearly_renewable_percentage.csv\
@@ -89,6 +90,11 @@ derived_data/natural_disaster_occurrences.csv:\
 	source_data/natural_disasters/meteorological_disasters.csv\
 	scripts/combine_natural_disaster_occurrences_data.R
 	Rscript scripts/combine_natural_disaster_occurrences_data.R
+
+derived_data/long_natural_disaster_occurrences.csv:\
+	derived_data/natural_disaster_occurrences.csv\
+	scripts/lengthen_natural_disaster_occurrences.R
+	Rscript scripts/lengthen_natural_disaster_occurrences.R
 
 derived_data/natural_disaster_deaths.csv:\
 	source_data/natural_disasters/climatological_disasters.csv\
