@@ -2,11 +2,7 @@ library(tidyverse)
 library(shiny)
 
 # Load in datasets
-yearly_emissions <- read_csv("derived_data/yearly_emissions.csv")
-long_yearly_emissions <- yearly_emissions %>%
-  pivot_longer(cols = -c(Country, Year), names_to = "Type", 
-               values_to = "Emissions") %>%
-  filter(!is.na(Emissions))
+long_yearly_emissions <- read_csv("derived_data/long_yearly_emissions.csv")
 
 long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
 
