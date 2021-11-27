@@ -18,11 +18,7 @@ long_natural_disaster_occurrences <- read_csv("derived_data/long_natural_disaste
 
 long_natural_disaster_deaths <- read_csv("derived_data/long_natural_disaster_deaths.csv")
 
-yearly_hazardous_waste <- read_csv("derived_data/yearly_hazardous_waste.csv")
-long_yearly_hazardous_waste <- yearly_hazardous_waste %>%
-  pivot_longer(cols = -c(Country, Year), names_to = "Category",
-               values_to = "Tonnes") %>%
-  filter(!is.na(Tonnes))
+long_yearly_hazardous_waste <- read_csv("derived_data/long_yearly_hazardous_waste.csv")
 
 long_yearly_municipal_recycled <- read_csv("derived_data/long_yearly_municipal_recycled.csv")
 
