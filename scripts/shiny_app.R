@@ -16,11 +16,7 @@ long_yearly_precipitation <- read_csv("derived_data/long_yearly_precipitation.cs
 
 long_natural_disaster_occurrences <- read_csv("derived_data/long_natural_disaster_occurrences.csv")
 
-natural_disaster_deaths <- read_csv("derived_data/natural_disaster_deaths.csv")
-long_natural_disaster_deaths <- natural_disaster_deaths %>%
-  pivot_longer(cols = -c(Country, `Year range`), names_to = "Type", 
-               values_to = "Deaths") %>%
-  filter(!is.na(Deaths))
+long_natural_disaster_deaths <- read_csv("derived_data/long_natural_disaster_deaths.csv")
 
 yearly_hazardous_waste <- read_csv("derived_data/yearly_hazardous_waste.csv")
 long_yearly_hazardous_waste <- yearly_hazardous_waste %>%
