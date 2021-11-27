@@ -26,40 +26,40 @@ clean_country_names <- function(countries) {
                        "Côte d’Ivoire")
   countries <- replace(countries, 
                        countries == "Eswatini",
-                       "Kingdom of Eswatini")
+                       "Eswatini (Kingdom of)")
   countries <- replace(countries, 
-                       countries == "Eswatini (Kingdom of)",
-                       "Kingdom of Eswatini")
+                       countries == "Kingdom of Eswatini",
+                       "Eswatini (Kingdom of)")
   countries <- replace(countries,
                        countries == "Swaziland",
-                       "Kingdom of Eswatini")
+                       "Eswatini (Kingdom of)")
   countries <- replace(countries, 
                        countries == "Hong Kong; China (SAR)",
                        "China, Hong Kong SAR")
   countries <- replace(countries, 
-                       countries == "Korea (Republic of)",
-                       "Republic of Korea")
+                       countries == "Republic of Korea",
+                       "Korea (Republic of)")
   countries <- replace(countries, 
                        countries == "Korea, Republic of",
-                       "Republic of Korea")
+                       "Korea (Republic of)")
   countries <- replace(countries, 
                        countries == "Korea, DemocraticPpl's.Republic",
-                       "Republic of Korea")
+                       "Korea (Republic of)")
   countries <- replace(countries, 
                        countries == "Democratic People's Republic of Korea",
-                       "Republic of Korea")
+                       "Korea (Republic of)")
   countries <- replace(countries, 
-                       countries == "Moldova (Republic of)",
-                       "Republic Moldova")
+                       countries == "Republic of Moldova",
+                       "Moldova (Republic of)")
   countries <- replace(countries, 
                        countries == "Palestine; State of",
-                       "State of Palestine")
+                       "Palestine (State of)")
   countries <- replace(countries, 
-                       countries == "Palestine (State of)",
-                       "State of Palestine")
+                       countries == "State of Palestine",
+                       "Palestine (State of)")
   countries <- replace(countries, 
-                       countries == "Tanzania (United Republic of)",
-                       "United Republic of Tanzania")
+                       countries == "United Republic of Tanzania",
+                       "Tanzania (United Republic of)")
   countries <- replace(countries, 
                        countries == "Saint Kitts-Nevis",
                        "Saint Kitts and Nevis")
