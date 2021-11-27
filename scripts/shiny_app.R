@@ -3,23 +3,14 @@ library(shiny)
 
 # Load in datasets
 long_yearly_emissions <- read_csv("derived_data/long_yearly_emissions.csv")
-
 long_sector_emissions <- read_csv("derived_data/long_sector_emissions.csv")
-
 long_yearly_energy_per_capita <- read_csv("derived_data/long_yearly_energy_per_capita.csv")
-
 long_yearly_renewable_percentage <- read_csv("derived_data/long_yearly_renewable_percentage.csv")
-
 long_yearly_forest_area <- read_csv("derived_data/long_yearly_forest_area.csv")
-
 long_yearly_precipitation <- read_csv("derived_data/long_yearly_precipitation.csv")
-
 long_natural_disaster_occurrences <- read_csv("derived_data/long_natural_disaster_occurrences.csv")
-
 long_natural_disaster_deaths <- read_csv("derived_data/long_natural_disaster_deaths.csv")
-
 long_yearly_hazardous_waste <- read_csv("derived_data/long_yearly_hazardous_waste.csv")
-
 long_yearly_municipal_recycled <- read_csv("derived_data/long_yearly_municipal_recycled.csv")
 
 # User interface
@@ -41,7 +32,7 @@ ui <- fluidPage(
                   label = "Choose a country to display",
                   choices = unique(long_yearly_emissions$Country),
                   selected = "Sweden"),
-      p("This shiny app displays enviromental indicator data from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics for 192 countries. Please note that not every country has data available for each type of environmental indicator displayed. If a country is missing data for a particular type of plot, that plot will be blank."),
+      p("This shiny app displays enviromental indicator data from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics for 190 countries. Please note that not every country has data available for each type of environmental indicator displayed. If a country is missing data for a particular type of plot, that plot will be blank."),
       width = 3, fluid = FALSE
     ),
     mainPanel(
