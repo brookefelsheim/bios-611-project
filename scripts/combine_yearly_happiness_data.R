@@ -35,4 +35,7 @@ yearly_happiness <- full_join(yearly_happiness, happiness_2017)
 yearly_happiness <- full_join(yearly_happiness, happiness_2018)
 yearly_happiness <- full_join(yearly_happiness, happiness_2019)
 
+yearly_happiness$Region[yearly_happiness$Country == "Taiwan Province of China"] <- "Eastern Asia"
+yearly_happiness$Region[yearly_happiness$Country == "Gambia"] <- "Sub-Saharan Africa"
+
 write_csv(yearly_happiness, "derived_data/yearly_happiness.csv")
