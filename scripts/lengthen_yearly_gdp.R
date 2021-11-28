@@ -1,4 +1,5 @@
 library(tidyverse)
+library(readxl)
 source("scripts/helper_functions.R")
 
 ensure_dir("derived_data")
