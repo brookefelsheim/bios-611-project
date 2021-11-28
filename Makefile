@@ -23,6 +23,8 @@ all: report.pdf\
 	derived_data/long_yearly_precipitation.csv\
 	derived_data/long_yearly_gdp.csv\
 	derived_data/long_yearly_gni_by_gender.csv\
+	derived_data/yearly_happiness.csv\
+	derived_data/long_yearly_happiness.csv\
 	figures/emissions_pc_plot.png\
 	logs/emissions_pc_summary.txt\
 	figures/ghg_emissions_trends_top_10_plot.png\
@@ -153,6 +155,11 @@ derived_data/yearly_happiness.csv:\
 	source_data/happiness/2019.csv\
 	scripts/combine_yearly_happiness_data.R
 	Rscript scripts/combine_yearly_happiness_data.R
+
+derived_data/long_yearly_happiness.csv:\
+	derived_data/yearly_happiness.csv\
+	scripts/lengthen_yearly_happiness.R
+	Rscript scripts/lengthen_yearly_happiness.R
 
 figures/emissions_pc_plot.png logs/emissions_pc_summary.txt:\
 	derived_data/yearly_emissions.csv scripts/emissions_PCA.R
