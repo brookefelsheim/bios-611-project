@@ -12,12 +12,16 @@ long_natural_disaster_occurrences <- read_csv("derived_data/long_natural_disaste
 long_natural_disaster_deaths <- read_csv("derived_data/long_natural_disaster_deaths.csv")
 long_yearly_hazardous_waste <- read_csv("derived_data/long_yearly_hazardous_waste.csv")
 long_yearly_municipal_recycled <- read_csv("derived_data/long_yearly_municipal_recycled.csv")
+long_yearly_income <- read_csv("derived_data/long_yearly_income.csv")
 
 # User interface
 ui <- fluidPage(
   tags$head(
     tags$style(HTML(
-      "h2 {
+      "h1 {
+        font-weight: bold;
+      }
+      h2 {
         font-weight: bold;
       }
       h3 {
@@ -25,17 +29,18 @@ ui <- fluidPage(
         text-decoration: underline;
       }"))
   ),
-  titlePanel("Environmental Indicator Data by Country"),
+  titlePanel("Indicator Data by Country"),
   sidebarLayout(
     sidebarPanel(
       selectInput("country", 
                   label = "Choose a country to display",
                   choices = unique(long_yearly_emissions$Country),
                   selected = "Sweden"),
-      p("This shiny app displays enviromental indicator data from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics for 190 countries. Please note that not every country has data available for each type of environmental indicator displayed. If a country is missing data for a particular type of plot, that plot will be blank."),
+      p("This shiny app displays enviromental and economic indicator data for 190 countries. The environmental indicator data comes from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics and the economic indicator data comes from the UNEP Human Development Report. Please note that not every country has data available for each type of indicator displayed. If a country is missing data for a particular type of plot, that plot will be blank."),
       width = 3, fluid = FALSE
     ),
     mainPanel(
+      h1("Environmental Indicators"),
       h3("Air and Climate"),
       plotOutput("emissions_plot", width = 820),
       plotOutput("sector_plot", width = 720),
@@ -51,7 +56,10 @@ ui <- fluidPage(
       plotOutput("natural_disaster_deaths_plot", width = 820),
       h3("Waste"),
       plotOutput("hazardous_waste_plot", width = 820),
-      plotOutput("municipal_recycled_plot", width = 650)
+      plotOutput("municipal_recycled_plot", width = 650),
+      h1("Economic Indicators"),
+      h3("Income"),
+      plotOutput("income_plot", width = 650)
     )
   )
 )
@@ -169,6 +177,17 @@ server <- function(input, output) {
       geom_point(color="#00B9E3") + geom_line(color="#00B9E3") + 
       ylab("Municipal Waste Recycled\n(%)") + theme_bw() +
       ggtitle(paste0("Percentage of Municipal Waste Recycled by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20)))
+  
+  output$income_plot <- renderPlot(
+    ggplot(long_yearly_income %>%
+             filter(Country == input$country),
+           aes(x = Year, y = GDP_per_capita)) +
+      geom_point(color="#00BA38") + geom_line(color="#00BA38") + 
+      ylab("GDP per capita") + theme_bw() +
+      ggtitle(paste0("GDP per Capita\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20)))
