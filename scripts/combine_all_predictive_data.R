@@ -90,10 +90,10 @@ happiness <- read_csv("derived_data/yearly_happiness.csv") %>%
   
 ##### Combine all predictive data
 
-all_predictive_data <- inner_join(forest_area, agricultural_area, by = "Country")
-all_predictive_data <- inner_join(all_predictive_data, energy, by = "Country")
+all_predictive_data <- inner_join(ghg, energy, by = "Country")
+all_predictive_data <- inner_join(all_predictive_data, agricultural_area, by = "Country")
+all_predictive_data <- inner_join(all_predictive_data, forest_area, by = "Country")
 all_predictive_data <- inner_join(all_predictive_data, protected_areas, by = "Country")
-all_predictive_data <- inner_join(all_predictive_data, ghg, by = "Country")
 all_predictive_data <- inner_join(all_predictive_data, gdp, by = "Country")
 all_predictive_data <- inner_join(all_predictive_data, happiness, by = "Country")
 
