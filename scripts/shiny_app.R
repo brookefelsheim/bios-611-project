@@ -14,6 +14,7 @@ long_yearly_hazardous_waste <- read_csv("derived_data/long_yearly_hazardous_wast
 long_yearly_municipal_recycled <- read_csv("derived_data/long_yearly_municipal_recycled.csv")
 long_yearly_gdp <- read_csv("derived_data/long_yearly_gdp.csv")
 long_yearly_gni_by_gender <- read_csv("derived_data/long_yearly_gni_by_gender.csv")
+long_yearly_happiness <- read_csv("derived_data/long_yearly_happiness.csv")
 
 # User interface
 ui <- fluidPage(
@@ -60,7 +61,9 @@ ui <- fluidPage(
       plotOutput("municipal_recycled_plot", width = 650),
       h1("Economic Indicators"),
       plotOutput("gdp_plot", width = 650),
-      plotOutput("gni_plot", width = 820)
+      plotOutput("gni_plot", width = 820),
+      h1("Happiness Indicators"),
+      plotOutput("happiness_plot", width = 650)
     )
   )
 )
@@ -204,6 +207,17 @@ server <- function(input, output) {
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20),
             legend.text = element_text(size = 16)))
+  
+  output$happiness_plot <- renderPlot(
+    ggplot(long_yearly_happiness %>%
+             filter(Country == input$country),
+           aes(x = Year, y = Happiness_score)) +
+      geom_point(color="#D39200") + geom_line(color="#D39200") + 
+      ylab("Happiness Score") + theme_bw() +
+      ggtitle(paste0("Happiness Score by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20)))
 }
 
 # Start the Server

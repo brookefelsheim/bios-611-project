@@ -43,6 +43,7 @@ shiny_app: derived_data/long_yearly_emissions.csv\
 	derived_data/long_yearly_precipitation.csv\
 	derived_data/long_yearly_gdp.csv\
 	derived_data/long_yearly_gni_by_gender.csv\
+	derived_data/long_yearly_happiness.csv\
 	scripts/shiny_app.R
 	Rscript scripts/shiny_app.R ${PORT}
 
