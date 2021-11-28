@@ -13,6 +13,7 @@ long_natural_disaster_deaths <- read_csv("derived_data/long_natural_disaster_dea
 long_yearly_hazardous_waste <- read_csv("derived_data/long_yearly_hazardous_waste.csv")
 long_yearly_municipal_recycled <- read_csv("derived_data/long_yearly_municipal_recycled.csv")
 long_yearly_gdp <- read_csv("derived_data/long_yearly_gdp.csv")
+long_yearly_gni_by_gender <- read_csv("derived_data/long_yearly_gni_by_gender.csv")
 
 # User interface
 ui <- fluidPage(
@@ -58,7 +59,8 @@ ui <- fluidPage(
       plotOutput("hazardous_waste_plot", width = 820),
       plotOutput("municipal_recycled_plot", width = 650),
       h1("Economic Indicators"),
-      plotOutput("gdp_plot", width = 650)
+      plotOutput("gdp_plot", width = 650),
+      plotOutput("gni_plot", width = 820)
     )
   )
 )
@@ -185,11 +187,23 @@ server <- function(input, output) {
              filter(Country == input$country),
            aes(x = Year, y = GDP_per_capita)) +
       geom_point(color="#00BA38") + geom_line(color="#00BA38") + 
-      ylab("GDP per capita") + theme_bw() +
-      ggtitle(paste0("GDP per Capita\n", input$country)) +
+      ylab("Gross Domestic Product per capita") + theme_bw() +
+      ggtitle(paste0("Gross Domestic Product per Capita by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20)))
+  
+  output$gni_plot <- renderPlot(
+    ggplot(long_yearly_gni_by_gender %>%
+             filter(Country == input$country),
+           aes(x = Year, y = GNI)) +
+      geom_point(aes(color=Gender)) + geom_line(aes(color=Gender)) + theme_bw() +
+      ylab("Gross National Income") +
+      ggtitle(paste0("Gross National Income by Year\n", input$country)) +
+      theme(axis.text = element_text(size = 16),
+            axis.title = element_text(size = 17, face="bold"),
+            title = element_text(size = 20),
+            legend.text = element_text(size = 16)))
 }
 
 # Start the Server
