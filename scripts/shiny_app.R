@@ -12,7 +12,7 @@ long_natural_disaster_occurrences <- read_csv("derived_data/long_natural_disaste
 long_natural_disaster_deaths <- read_csv("derived_data/long_natural_disaster_deaths.csv")
 long_yearly_hazardous_waste <- read_csv("derived_data/long_yearly_hazardous_waste.csv")
 long_yearly_municipal_recycled <- read_csv("derived_data/long_yearly_municipal_recycled.csv")
-long_yearly_income <- read_csv("derived_data/long_yearly_income.csv")
+long_yearly_gdp <- read_csv("derived_data/long_yearly_gdp.csv")
 
 # User interface
 ui <- fluidPage(
@@ -59,7 +59,7 @@ ui <- fluidPage(
       plotOutput("municipal_recycled_plot", width = 650),
       h1("Economic Indicators"),
       h3("Income"),
-      plotOutput("income_plot", width = 650)
+      plotOutput("gdp_plot", width = 650)
     )
   )
 )
@@ -181,8 +181,8 @@ server <- function(input, output) {
             axis.title = element_text(size = 17, face="bold"),
             title = element_text(size = 20)))
   
-  output$income_plot <- renderPlot(
-    ggplot(long_yearly_income %>%
+  output$gdp_plot <- renderPlot(
+    ggplot(long_yearly_gdp %>%
              filter(Country == input$country),
            aes(x = Year, y = GDP_per_capita)) +
       geom_point(color="#00BA38") + geom_line(color="#00BA38") + 
