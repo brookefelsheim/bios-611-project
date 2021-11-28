@@ -21,17 +21,20 @@ clean_country_names <- function(countries) {
   countries <- sub("Is\\.", "Islands", countries)
   countries <- sub(" region", " Region", countries)
   countries <- replace(countries, 
-                       countries == "Democratic Republic of the Congo",
-                       "Congo (Democratic Republic of the)")
+                       countries == "Congo (Democratic Republic of the)",
+                       "Democratic Republic of the Congo")
   countries <- replace(countries, 
                        countries == "Congo (Kinshasa)",
-                       "Congo (Democratic Republic of the)")
+                       "Democratic Republic of the Congo")
   countries <- replace(countries, 
                        countries == "Congo",
-                       "Congo (Republic of the)")
+                       "Republic of the Congo")
+  countries <- replace(countries, 
+                       countries == "Congo (Republic of the)",
+                       "Republic of the Congo")
   countries <- replace(countries, 
                        countries == "Congo (Brazzaville)",
-                       "Congo (Republic of the)")
+                       "Republic of the Congo")
   countries <- replace(countries, 
                        countries == "CÃ´te d'Ivoire",
                        "Ivory Coast")
@@ -146,4 +149,7 @@ clean_country_names <- function(countries) {
   countries <- replace(countries,
                        countries == "Lao People's Democratic Republic",
                        "Laos")
+  countries <- replace(countries,
+                       countries == "Micronesia (Federated States of)",
+                       "Federated States of Micronesia")
 }
