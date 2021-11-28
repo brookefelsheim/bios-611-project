@@ -72,14 +72,14 @@ clean_country_names <- function(countries) {
                        countries == "Korea, Republic of",
                        "South Korea")
   countries <- replace(countries, 
-                       countries == "Korea, DemocraticPpl's.Republic",
-                       "South Korea")
-  countries <- replace(countries, 
-                       countries == "Democratic People's Republic of Korea",
-                       "South Korea")
-  countries <- replace(countries, 
                        countries == "Korea (Republic of)",
                        "South Korea")
+  countries <- replace(countries, 
+                       countries == "Korea, DemocraticPpl's.Republic",
+                       "North Korea")
+  countries <- replace(countries, 
+                       countries == "Democratic People's Republic of Korea",
+                       "North Korea")
   countries <- replace(countries, 
                        countries == "Republic of Moldova",
                        "Moldova")
