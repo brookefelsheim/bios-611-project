@@ -145,6 +145,15 @@ derived_data/long_yearly_gni_by_gender.csv:\
 	scripts/lengthen_yearly_gni_by_gender.R
 	Rscript scripts/lengthen_yearly_gni_by_gender.R
 
+derived_data/yearly_happiness.csv:\
+	source_data/happiness/2015.csv\
+	source_data/happiness/2016.csv\
+	source_data/happiness/2017.csv\
+	source_data/happiness/2018.csv\
+	source_data/happiness/2019.csv\
+	scripts/combine_yearly_happiness_data.R
+	Rscript scripts/combine_yearly_happiness_data.R
+
 figures/emissions_pc_plot.png logs/emissions_pc_summary.txt:\
 	derived_data/yearly_emissions.csv scripts/emissions_PCA.R
 	Rscript scripts/emissions_PCA.R
