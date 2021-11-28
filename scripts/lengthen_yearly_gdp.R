@@ -3,10 +3,10 @@ source("scripts/helper_functions.R")
 
 ensure_dir("derived_data")
 
-income <- read_excel("source_data/income/income_by_country.xlsx", 
+gdp <- read_excel("source_data/economy/income_by_country.xlsx", 
                      sheet = "GDP per capita", na = "..")
 
-long_yearly_gdp <- income %>% 
+long_yearly_gdp <- gdp %>% 
   select(1:14) %>%
   mutate(`1990` = as.numeric(`1990`)) %>%
   pivot_longer(!Country, names_to = "Year", 

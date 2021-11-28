@@ -58,7 +58,6 @@ ui <- fluidPage(
       plotOutput("hazardous_waste_plot", width = 820),
       plotOutput("municipal_recycled_plot", width = 650),
       h1("Economic Indicators"),
-      h3("Income"),
       plotOutput("gdp_plot", width = 650)
     )
   )
