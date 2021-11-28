@@ -21,6 +21,7 @@ all: report.pdf\
 	derived_data/long_yearly_energy_per_capita.csv\
 	derived_data/long_yearly_renewable_percentage.csv\
 	derived_data/long_yearly_precipitation.csv\
+	derived_data/long_yearly_gdp.csv\
 	figures/emissions_pc_plot.png\
 	logs/emissions_pc_summary.txt\
 	figures/ghg_emissions_trends_top_10_plot.png\
@@ -37,6 +38,7 @@ shiny_app: derived_data/long_yearly_emissions.csv\
 	derived_data/long_yearly_energy_per_capita.csv\
 	derived_data/long_yearly_renewable_percentage.csv\
 	derived_data/long_yearly_precipitation.csv\
+	derived_data/long_yearly_gdp.csv\
 	scripts/shiny_app.R
 	Rscript scripts/shiny_app.R ${PORT}
 
@@ -130,6 +132,11 @@ derived_data/long_yearly_precipitation.csv:\
 	source_data/inland_water_resources/precipitation.csv\
 	scripts/lengthen_yearly_precipitation.R
 	Rscript scripts/lengthen_yearly_precipitation.R
+
+derived_data/long_yearly_gdp.csv:\
+	source_data/economy/income_by_country.xlsx\
+	scripts/lengthen_yearly_gdp.R
+	Rscript scripts/lengthen_yearly_gdp.R
 
 figures/emissions_pc_plot.png logs/emissions_pc_summary.txt:\
 	derived_data/yearly_emissions.csv scripts/emissions_PCA.R
