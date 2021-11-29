@@ -12,7 +12,7 @@ plot_ROC <- function(perf1, perf2, a1, a2, set1, set2) {
   abline(a=0, b=1, lwd = 0.8)
   mtext(side = 2, text = "True positive rate", at = 0.5, cex = 1, line = 2.2)
   mtext(side = 1, text = "False positive rate", at = 0.5, cex = 1, line = 2)
-  legend("bottomright", legend = c(paste0(set1, " (AUC = ", a1, ")"), 
+  legend(0.55, 0.15, legend = c(paste0(set1, " (AUC = ", a1, ")"), 
                                    paste0(set2, " (AUC = ", a2, ")")), 
          lty = c(1,1),lwd = c(1.5,1.5) ,
          col = c("#00BFC4", "#F8766D"), cex = 1, bty = "n")
