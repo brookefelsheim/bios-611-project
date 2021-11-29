@@ -48,7 +48,7 @@ auc_train <- signif(performance(pred_train, measure = 'auc')@y.values[[1]][1], 2
 auc_test <- signif(performance(pred_test, measure = 'auc')@y.values[[1]][1], 2)
 
 perf_train <- performance(pred_train, measure = 'tpr', x.measure = 'fpr')
-perf_test <- performance(pred_train, measure = 'tpr', x.measure = 'fpr')
+perf_test <- performance(pred_test, measure = 'tpr', x.measure = 'fpr')
 
 plot_ROC(perf_train, perf_test, auc_train, auc_test, "Training", "Testing",
          "figures/GDP_elasticnet_roc_curves")
