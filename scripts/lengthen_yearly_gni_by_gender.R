@@ -9,6 +9,7 @@ male_yearly_gni <- read_excel("source_data/economy/income_by_country.xlsx",
 
 long_male_yearly_gni <- male_yearly_gni %>% 
   select(1:13) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   mutate(`1995` = as.numeric(`1995`)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "GNI") %>%
@@ -21,6 +22,7 @@ female_yearly_gni <- read_excel("source_data/economy/income_by_country.xlsx",
 
 long_female_yearly_gni <- female_yearly_gni %>% 
   select(1:13) %>%
+  mutate(Country = clean_country_names(Country)) %>%
   mutate(`1995` = as.numeric(`1995`)) %>%
   pivot_longer(!Country, names_to = "Year", 
                values_to = "GNI") %>%
