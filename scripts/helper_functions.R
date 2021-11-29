@@ -21,6 +21,22 @@ plot_ROC <- function(perf1, perf2, a1, a2, set1, set2) {
   return(roc_plot)
 }
 
+plot_coef <- function(model) {
+  model_coef <- data.frame(Coefficient = model$coefnames,
+                           Value = summary(predict(model$finalModel, 
+                                                   type = "coefficients", 
+                                                   s = model$bestTune$lambda))$x[-1])
+  
+  coef_plot <- ggplot(model_coef, aes(x = Coefficient, y = Value)) +
+    geom_point(col = "#C77CFF", size = 3) + 
+    geom_segment(aes(x = Coefficient, xend = Coefficient,
+                     y = min(Value), yend = max(Value)),
+                 linetype = "dashed", size = 0.1) +
+    geom_hline(yintercept = 0, color = "gray") + 
+    theme_classic() + coord_flip()
+  return(coef_plot)
+}
+
 clean_country_names <- function(countries) {
   countries <- gsub("’", "'", countries)
   countries <- gsub("&", "and", countries)
