@@ -33,7 +33,13 @@ all: report.pdf\
 	figures/paired_indicators.png\
 	figures/region_boxplots.png\
 	figures/environmental_indicator_pc_plot.png\
-	outputs/environmental_indicator_pc_summary.txt
+	outputs/environmental_indicator_pc_summary.txt\
+	figures/happiness_elasticnet_roc_curves.png\
+	outputs/happiness_elasticnet_model.rds\
+	outputs/happiness_elasticnet_coefficients.rds\
+	figures/GDP_elasticnet_roc_curves.png\
+	outputs/GDP_elasticnet_model.rds\
+	outputs/GDP_elasticnet_coefficients.rds
 
 .PHONY: shiny_app
 shiny_app: derived_data/long_yearly_emissions.csv\
@@ -200,3 +206,16 @@ figures/environmental_indicator_pc_plot.png outputs/environmental_indicator_pc_s
 	derived_data/all_predictive_data.csv\
 	scripts/environmental_indicator_PCA.R
 	Rscript scripts/environmental_indicator_PCA.R
+
+figures/happiness_elasticnet_roc_curves.png outputs/happiness_elasticnet_model.rds\
+outputs/happiness_elasticnet_coefficients.rds:\
+	derived_data/all_predictive_data.csv\
+	scripts/train_test_elasticnet_happiness.R
+	Rscript scripts/train_test_elasticnet_happiness.R
+
+figures/GDP_elasticnet_roc_curves.png outputs/GDP_elasticnet_model.rds\
+outputs/GDP_elasticnet_coefficients.rds:\
+	derived_data/all_predictive_data.csv\
+	scripts/train_test_elasticnet_GDP.R
+	Rscript scripts/train_test_elasticnet_GDP.R
+	
