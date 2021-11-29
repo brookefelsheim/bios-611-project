@@ -8,9 +8,9 @@ ensure_dir <- function(dir) {
 plot_ROC <- function(perf1, perf2, a1, a2, set1, set2, main) {
   png(paste0(main, ".png"), width = 1.5, height = 1.5, units = "in", res = 350)
   par(mai = c(0.24, 0.24, 0.05, 0.05), cex.axis = 0.3)
-  plot(perf1, col = "#D55E00", lwd = 1.2, xlab = "", ylab = "", box.lwd = 0.8,
+  plot(perf1, col = "#00BFC4", lwd = 1.2, xlab = "", ylab = "", box.lwd = 0.8,
        xaxis.xaxt = "n", yaxis.yaxt = "n")
-  plot(perf2, col = "#0072B2", lwd = 1.2, add = T)
+  plot(perf2, col = "#F8766D", lwd = 1.2, add = T)
   abline(a=0, b=1, lwd = 0.8)
   axis(1, tck=(-0.02), lwd = 0.8)
   axis(2, tck=(-0.02), lwd = 0.8)
