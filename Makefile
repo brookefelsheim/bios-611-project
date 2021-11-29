@@ -30,7 +30,7 @@ all: report.pdf\
 	figures/paired_indicators.png\
 	figures/region_boxplots.png\
 	figures/environmental_indicator_pc_plot.png\
-	outputs/environmental_indicator_pc_summary.txt\
+	outputs/environmental_indicator_pc_summary.rds\
 	figures/happiness_elasticnet_figures.png\
 	outputs/happiness_elasticnet_model.rds\
 	outputs/happiness_elasticnet_coefficients.rds\
