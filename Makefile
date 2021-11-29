@@ -27,7 +27,6 @@ all: report.pdf\
 	derived_data/long_yearly_happiness.csv\
 	derived_data/all_predictive_data.csv\
 	figures/ghg_emissions_trends_top_10_plot.png\
-	logs/top_10_countries_emissions.txt\
 	figures/paired_indicators.png\
 	figures/region_boxplots.png\
 	figures/environmental_indicator_pc_plot.png\
@@ -181,7 +180,7 @@ derived_data/all_predictive_data.csv:\
 	scripts/combine_all_predictive_data.R
 	Rscript scripts/combine_all_predictive_data.R
 
-figures/ghg_emissions_trends_top_10_plot.png logs/top_10_countries_emissions.txt:\
+figures/ghg_emissions_trends_top_10_plot.png:\
 	derived_data/yearly_emissions.csv scripts/explore_emissions_trends.R
 	Rscript scripts/explore_emissions_trends.R
 

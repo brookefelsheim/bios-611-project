@@ -2,7 +2,6 @@ library(tidyverse)
 source("scripts/helper_functions.R")
 
 ensure_dir("figures")
-ensure_dir("logs")
 
 yearly_emissions <- read_csv("derived_data/yearly_emissions.csv")
 
@@ -12,11 +11,8 @@ long_yearly_emissions <- yearly_emissions %>%
   filter(!is.na(Emissions))
 
 highest_10_countries <- yearly_emissions %>% 
-  arrange(desc(`All greenhouse gasses`)) %>% select(Country) %>% distinct() %>% pull(Country) %>% head(10)
-
-write.table(highest_10_countries, "logs/top_10_countries_emissions.txt",
-            col.names = F, row.names = F, quote = F)
-
+  arrange(desc(`All greenhouse gasses`)) %>% select(Country) %>% 
+  distinct() %>% pull(Country) %>% head(10)
 
 ghg_plot <- ggplot(long_yearly_emissions %>% 
          filter(Type == "All greenhouse gasses") %>%
