@@ -31,7 +31,9 @@ all: report.pdf\
 	figures/ghg_emissions_trends_top_10_plot.png\
 	logs/top_10_countries_emissions.txt\
 	figures/paired_indicators.png\
-	figures/region_boxplots.png
+	figures/region_boxplots.png\
+	figures/environmental_indicator_pc_plot.png\
+	logs/environmental_indicator_pc_summary.txt
 
 .PHONY: shiny_app
 shiny_app: derived_data/long_yearly_emissions.csv\
@@ -190,8 +192,11 @@ figures/paired_indicators.png:\
 	Rscript scripts/plot_paired_indicator_data.R
 
 figures/region_boxplots.png:\
-	derived_data/all_predictive_data.csv\csv\
+	derived_data/all_predictive_data.csv\
 	scripts/plot_region_boxplots.R
 	Rscript scripts/plot_region_boxplots.R
 
-
+figures/environmental_indicator_pc_plot.png logs/environmental_indicator_pc_summary.txt:\
+	derived_data/all_predictive_data.csv\
+	scripts/environmental_indicator_PCA.R
+	Rscript scripts/environmental_indicator_PCA.R
