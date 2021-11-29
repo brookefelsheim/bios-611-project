@@ -1,5 +1,7 @@
 library(tidyverse)
 library(readxl)
+library(ggpubr)
+library(gridGraphics)
 library(glmnet)
 library(caret)
 library(ROCR)
@@ -12,7 +14,7 @@ set.seed(1128)
 
 all_predictive_data <- read_csv("derived_data/all_predictive_data.csv") %>%
   mutate(Happiness_level = factor(ifelse(Happiness_score > median(Happiness_score),
-                                  "High", "Low"), levels = c("Low", "High")))
+                                         "High", "Low"), levels = c("Low", "High")))
 
 # Train elastic net model to predict high/low happiness score
 
@@ -29,7 +31,7 @@ testing_data <- all_predictive_data %>% slice(-split$Resample1)
 
 cv_10 <- trainControl(method = "cv", number = 10)
 model <- train(formula, data = training_data, method = "glmnet", 
-             metric = "Accuracy", trControl = cv_10)
+               metric = "Accuracy", trControl = cv_10)
 
 saveRDS(model, "outputs/happiness_elasticnet_model.rds")
 
@@ -37,6 +39,7 @@ saveRDS(predict(model$finalModel, type = "coefficients", s = model$bestTune$lamb
         "outputs/happiness_elasticnet_coefficients.rds")
 
 # Model performance
+
 pred_train <- prediction(predict(model, newdata = training_data, type = 'prob')$High,
                          labels = training_data %>% pull(Happiness_level),
                          label.ordering = c("Low", "High"))
@@ -50,5 +53,12 @@ auc_test <- signif(performance(pred_test, measure = 'auc')@y.values[[1]][1], 2)
 perf_train <- performance(pred_train, measure = 'tpr', x.measure = 'fpr')
 perf_test <- performance(pred_test, measure = 'tpr', x.measure = 'fpr')
 
-plot_ROC(perf_train, perf_test, auc_train, auc_test, "Training", "Testing",
-         "figures/happiness_elasticnet_roc_curves")
+roc_plot <- plot_ROC(perf_train, perf_test, auc_train, auc_test, "Training", "Testing")
+
+coef_plot <- plot_coef(model)
+
+figure <- ggarrange(plotlist = list(roc_plot, coef_plot), nrow = 1, ncol = 2,
+                    labels = c("A", "B"), widths = c(1.2, 1))
+
+ggsave("figures/happiness_elasticnet_figures.png", 
+       width = 10, height = 5, plot = figure, bg = "white")
