@@ -12,8 +12,6 @@ set.seed(1128)
 
 all_predictive_data <- read_csv("derived_data/all_predictive_data.csv") %>%
   mutate(Happiness_level = factor(ifelse(Happiness_score > median(Happiness_score),
-                                  "High", "Low"), levels = c("Low", "High"))) %>%
-  mutate(GDP_level = factor(ifelse(GDP_per_capita > median(GDP_per_capita),
                                   "High", "Low"), levels = c("Low", "High")))
 
 # Train elastic net model to predict high/low happiness score
