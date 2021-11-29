@@ -31,10 +31,10 @@ all: report.pdf\
 	figures/region_boxplots.png\
 	figures/environmental_indicator_pc_plot.png\
 	outputs/environmental_indicator_pc_summary.txt\
-	figures/happiness_elasticnet_roc_curves.png\
+	figures/happiness_elasticnet_figures.png\
 	outputs/happiness_elasticnet_model.rds\
 	outputs/happiness_elasticnet_coefficients.rds\
-	figures/GDP_elasticnet_roc_curves.png\
+	figures/GDP_elasticnet_figures.png\
 	outputs/GDP_elasticnet_model.rds\
 	outputs/GDP_elasticnet_coefficients.rds
 
