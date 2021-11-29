@@ -33,9 +33,14 @@ cv_5 <- trainControl(method = "cv", number = 10)
 model <- train(formula, data = training_data, method = "glmnet", 
              metric = "Accuracy", trControl = cv_5)
 
-con <- file("logs/GDP_elasticnet_model.txt")
+con <- file("logs/happiness_elasticnet_model.txt")
 sink(con, append=TRUE)
 model
+close(con)
+
+con <- file("logs/happiness_elasticnet_coefficients.txt")
+sink(con, append=TRUE)
+predict(model$finalModel, type = "coefficients", s = model$bestTune$lambda)
 close(con)
 
 # Model performance
