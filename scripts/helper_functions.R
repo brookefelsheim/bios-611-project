@@ -23,7 +23,7 @@ plot_ROC <- function(perf1, perf2, a1, a2, set1, set2, main) {
   legend("bottomright", legend = c(paste0(set1, " (AUC = ", a1, ")"), 
                                    paste0(set2, " (AUC = ", a2, ")")), 
          lty = c(1,1),lwd = c(1,1) ,
-         col = c("#D55E00", "#0072B2"), cex = 0.35, bty = "n")
+         col = c("#00BFC4", "#F8766D"), cex = 0.35, bty = "n")
   dev.off()
 }
 
