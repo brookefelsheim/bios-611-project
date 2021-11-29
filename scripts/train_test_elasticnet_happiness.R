@@ -29,9 +29,9 @@ split <- createDataPartition(all_predictive_data$Happiness_level, p = 0.6)
 training_data <- all_predictive_data %>% slice(split$Resample1)
 testing_data <- all_predictive_data %>% slice(-split$Resample1)
 
-cv_5 <- trainControl(method = "cv", number = 10)
+cv_10 <- trainControl(method = "cv", number = 10)
 model <- train(formula, data = training_data, method = "glmnet", 
-             metric = "Accuracy", trControl = cv_5)
+             metric = "Accuracy", trControl = cv_10)
 
 con <- file("logs/happiness_elasticnet_model.txt")
 sink(con, append=TRUE)
@@ -44,10 +44,18 @@ predict(model$finalModel, type = "coefficients", s = model$bestTune$lambda)
 close(con)
 
 # Model performance
-pred_train <- prediction(predict(fit, newdata = training_data, type = 'prob')$Low,
-                         labels = training_data %>% pull(Happiness_level))
-pred_test <- prediction(predict(fit, newdata = testing_data, type = 'prob')$Low,
-                        labels = testing_data %>% pull(Happiness_level))
+pred_train <- prediction(predict(model, newdata = training_data, type = 'prob')$High,
+                         labels = training_data %>% pull(Happiness_level),
+                         label.ordering = c("Low", "High"))
+pred_test <- prediction(predict(model, newdata = testing_data, type = 'prob')$High,
+                        labels = testing_data %>% pull(Happiness_level),
+                        label.ordering = c("Low", "High"))
 
 auc_train <- signif(performance(pred_train, measure = 'auc')@y.values[[1]][1], 2)
 auc_test <- signif(performance(pred_test, measure = 'auc')@y.values[[1]][1], 2)
+
+perf_train <- performance(pred_train, measure = 'tpr', x.measure = 'fpr')
+perf_test <- performance(pred_train, measure = 'tpr', x.measure = 'fpr')
+
+plot_ROC(perf_train, perf_test, auc_train, auc_test, "Training", "Testing",
+         "figures/happiness_elasticnet_auc")
