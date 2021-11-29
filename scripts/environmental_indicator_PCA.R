@@ -1,5 +1,6 @@
 library(tidyverse)
 library(readxl)
+library(ggpubr)
 source("scripts/helper_functions.R")
 
 ensure_dir("figures")
