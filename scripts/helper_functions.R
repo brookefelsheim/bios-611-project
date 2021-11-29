@@ -5,26 +5,20 @@ ensure_dir <- function(dir) {
   }
 }
 
-plot_ROC <- function(perf1, perf2, a1, a2, set1, set2, main) {
-  png(paste0(main, ".png"), width = 1.5, height = 1.5, units = "in", res = 350)
-  par(mai = c(0.24, 0.24, 0.05, 0.05), cex.axis = 0.3)
-  plot(perf1, col = "#00BFC4", lwd = 1.2, xlab = "", ylab = "", box.lwd = 0.8,
-       xaxis.xaxt = "n", yaxis.yaxt = "n")
-  plot(perf2, col = "#F8766D", lwd = 1.2, add = T)
+plot_ROC <- function(perf1, perf2, a1, a2, set1, set2) {
+  par(mai = c(0.75, 0.75, 0.15, 0.15), cex.axis = 1)
+  plot(perf1, col = "#00BFC4", lwd = 1.5, xlab = "", ylab = "", box.lwd = 0.6)
+  plot(perf2, col = "#F8766D", lwd = 1.5, add = T)
   abline(a=0, b=1, lwd = 0.8)
-  axis(1, tck=(-0.02), lwd = 0.8)
-  axis(2, tck=(-0.02), lwd = 0.8)
-  mtext(side = 1, text = seq(0, 1, by = 0.2), at = seq(0, 1, by=0.2), 
-        cex = 0.35, line = (-0.3))
-  mtext(side = 2, text = seq(0, 1, by = 0.2), at = seq(0, 1, by=0.2), 
-        cex = 0.35, line = 0.1)
-  mtext(side = 2, text = "True positive rate", at = 0.5, cex = 0.4, line = 0.6)
-  mtext(side = 1, text = "False positive rate", at = 0.5, cex = 0.4, line = 0.2)
+  mtext(side = 2, text = "True positive rate", at = 0.5, cex = 1, line = 2.2)
+  mtext(side = 1, text = "False positive rate", at = 0.5, cex = 1, line = 2)
   legend("bottomright", legend = c(paste0(set1, " (AUC = ", a1, ")"), 
                                    paste0(set2, " (AUC = ", a2, ")")), 
-         lty = c(1,1),lwd = c(1,1) ,
-         col = c("#00BFC4", "#F8766D"), cex = 0.35, bty = "n")
+         lty = c(1,1),lwd = c(1.5,1.5) ,
+         col = c("#00BFC4", "#F8766D"), cex = 1, bty = "n")
+  roc_plot <- recordPlot()
   dev.off()
+  return(roc_plot)
 }
 
 clean_country_names <- function(countries) {
