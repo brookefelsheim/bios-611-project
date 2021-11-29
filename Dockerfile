@@ -8,3 +8,4 @@ RUN R -e "install.packages('tinytex'); tinytex::install_tinytex(dir='/opt/tinyte
 RUN R -e "install.packages('readxl')"
 RUN R -e "install.packages('GGally')"
 RUN R -e "install.packages('ggpubr')"
+RUN R -e "install.packages('gridGraphics')"
