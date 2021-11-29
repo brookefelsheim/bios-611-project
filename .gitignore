@@ -16,5 +16,5 @@
 .bash_history
 derived_data/
 figures/
-logs/
+outputs/
 .TinyTeX/
