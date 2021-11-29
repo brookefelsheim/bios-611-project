@@ -1,23 +1,37 @@
 # README
 
 ## Introduction
-This project is an analysis of global environmental indicator data. This repository contains the source data, code, and results of the analysis.
+This project is an analysis of global environmental, economic, and happiness indicator data. This repository contains the source data, code, and results of the analysis.
 
 ## Source data
-The data used in this analysis come from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics and were downloaded via Kaggle: https://www.kaggle.com/ruchi798/global-environmental-indicators (last updated June 5, 2021). This dataset contains many types of environmental indicators, including:     
+
+### Environmental indicator data
+The environmental indicator source data used in this analysis come from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics and were downloaded via Kaggle: https://www.kaggle.com/ruchi798/global-environmental-indicators (last updated June 5, 2021). These data span many types of environmental indicators by country, including:     
 
 	* Air and Climate     
 	* Biodiversity     
-	* Energy and Minerals     
+	* Energy   
 	* Forest      
-	* Governance     
 	* Inland Water Resources     
 	* Land and Agriculture     
-	* Marine and Coastal Areas     
 	* Natural Disasters     
 	* Waste     
-	    
-This environmental indicator data is available for many different countries.
+
+### Economic indicator data
+The economic indicator source data used in this analysis come from the UNSD Human Development Report and were downloaded via Kaggle: https://www.kaggle.com/frankmollard/income-by-country (last updated August 11, 2020). The primary measure of economic activity used for this analysis was gross domestic product (GDP) by country.
+
+### Happiness indicator data
+The happiness indicator source data used in this analysis come from the World Happiness Report published by the Sustainable Development Solutions Network and were downloaded via Kaggle: https://www.kaggle.com/unsdsn/world-happiness (last updated November 26, 2019). Each country is given a "happiness score" that is based on life evaluation survey responses.
+
+## Analysis
+
+This analysis takes three primary forms:
+
+  **1. Indicator data trends by country**. This analysis is carried out in the shiny app, where a user can select a country and view many types of plots displaying indicator data trends.     
+  
+  **2. Indicator data trends for all countries**.     
+  
+  **3. Prediction of happiness and GDP level from environmental indicator data**.     
 
 ## Docker
 To run the analysis, you will need to have Docker installed (https://docs.docker.com/get-docker/) as well as the ability to run Docker as your current user.     
