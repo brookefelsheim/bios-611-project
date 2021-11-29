@@ -33,7 +33,7 @@ all: report.pdf\
 	figures/paired_indicators.png\
 	figures/region_boxplots.png\
 	figures/environmental_indicator_pc_plot.png\
-	logs/environmental_indicator_pc_summary.txt
+	outputs/environmental_indicator_pc_summary.txt
 
 .PHONY: shiny_app
 shiny_app: derived_data/long_yearly_emissions.csv\
@@ -196,7 +196,7 @@ figures/region_boxplots.png:\
 	scripts/plot_region_boxplots.R
 	Rscript scripts/plot_region_boxplots.R
 
-figures/environmental_indicator_pc_plot.png logs/environmental_indicator_pc_summary.txt:\
+figures/environmental_indicator_pc_plot.png outputs/environmental_indicator_pc_summary.rds:\
 	derived_data/all_predictive_data.csv\
 	scripts/environmental_indicator_PCA.R
 	Rscript scripts/environmental_indicator_PCA.R
