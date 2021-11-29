@@ -3,16 +3,13 @@ library(readxl)
 source("scripts/helper_functions.R")
 
 ensure_dir("figures")
-ensure_dir("logs")
+ensure_dir("outputs")
 
 all_predictive_data <- read_csv("derived_data/all_predictive_data.csv")
 
 pc <- prcomp(scale(all_predictive_data[,3:8]))
 
-con <- file("logs/environmental_indicator_pc_summary.txt")
-sink(con, append=TRUE)
-summary(pc)
-close(con)
+saveRDS(summary(pc), "outputs/environmental_indicator_pc_summary.rds")
 
 pc_data <- cbind(all_predictive_data[,1:2], pc$x) %>% as_tibble()
 

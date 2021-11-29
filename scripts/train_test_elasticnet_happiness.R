@@ -6,7 +6,7 @@ library(ROCR)
 source("scripts/helper_functions.R")
 
 ensure_dir("figures")
-ensure_dir("logs")
+ensure_dir("outputs")
 
 set.seed(1128)
 
@@ -33,15 +33,10 @@ cv_10 <- trainControl(method = "cv", number = 10)
 model <- train(formula, data = training_data, method = "glmnet", 
              metric = "Accuracy", trControl = cv_10)
 
-con <- file("logs/happiness_elasticnet_model.txt")
-sink(con, append=TRUE)
-model
-close(con)
+saveRDS(model, "outputs/happiness_elasticnet_model.rds")
 
-con <- file("logs/happiness_elasticnet_coefficients.txt")
-sink(con, append=TRUE)
-predict(model$finalModel, type = "coefficients", s = model$bestTune$lambda)
-close(con)
+saveRDS(predict(model$finalModel, type = "coefficients", s = model$bestTune$lambda), 
+        "outputs/happiness_elasticnet_coefficients.rds")
 
 # Model performance
 pred_train <- prediction(predict(model, newdata = training_data, type = 'prob')$High,
