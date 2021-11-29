@@ -2,7 +2,7 @@
 clean:
 	rm -rf derived_data/
 	rm -rf figures/
-	rm -rf logs/
+	rm -rf outputs/
 	rm -f report.pdf
 
 .PHONY: all
