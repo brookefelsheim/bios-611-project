@@ -58,4 +58,4 @@ perf_train <- performance(pred_train, measure = 'tpr', x.measure = 'fpr')
 perf_test <- performance(pred_train, measure = 'tpr', x.measure = 'fpr')
 
 plot_ROC(perf_train, perf_test, auc_train, auc_test, "Training", "Testing",
-         "figures/happiness_elasticnet_auc")
+         "figures/happiness_elasticnet_roc_curves")
