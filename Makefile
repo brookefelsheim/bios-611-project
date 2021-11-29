@@ -30,7 +30,8 @@ all: report.pdf\
 	logs/emissions_pc_summary.txt\
 	figures/ghg_emissions_trends_top_10_plot.png\
 	logs/top_10_countries_emissions.txt\
-	figures/paired_indicators.png
+	figures/paired_indicators.png\
+	figures/region_boxplots.png
 
 .PHONY: shiny_app
 shiny_app: derived_data/long_yearly_emissions.csv\
@@ -187,5 +188,10 @@ figures/paired_indicators.png:\
 	derived_data/all_predictive_data.csv\
 	scripts/plot_paired_indicator_data.R
 	Rscript scripts/plot_paired_indicator_data.R
+
+figures/region_boxplots.png:\
+	derived_data/all_predictive_data.csv\csv\
+	scripts/plot_region_boxplots.R
+	Rscript scripts/plot_region_boxplots.R
 
 
