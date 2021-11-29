@@ -57,6 +57,11 @@ shiny_app: derived_data/long_yearly_emissions.csv\
 
 report.pdf: report.Rmd\
 	figures/ghg_emissions_trends_top_10_plot.png\
+	figures/environmental_indicator_pc_plot.png\
+	figures/paired_indicators.png\
+	figures/region_boxplots.png\
+	figures/happiness_elasticnet_figures.png\
+	figures/GDP_elasticnet_figures.png\
 	build_report.R
 	Rscript build_report.R
 
