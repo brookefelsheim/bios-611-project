@@ -204,13 +204,13 @@ figures/environmental_indicator_pc_plot.png outputs/environmental_indicator_pc_s
 	scripts/environmental_indicator_PCA.R
 	Rscript scripts/environmental_indicator_PCA.R
 
-figures/happiness_elasticnet_roc_curves.png outputs/happiness_elasticnet_model.rds\
+figures/happiness_elasticnet_figures.png outputs/happiness_elasticnet_model.rds\
 outputs/happiness_elasticnet_coefficients.rds:\
 	derived_data/all_predictive_data.csv\
 	scripts/train_test_elasticnet_happiness.R
 	Rscript scripts/train_test_elasticnet_happiness.R
 
-figures/GDP_elasticnet_roc_curves.png outputs/GDP_elasticnet_model.rds\
+figures/GDP_elasticnet_figures.png outputs/GDP_elasticnet_model.rds\
 outputs/GDP_elasticnet_coefficients.rds:\
 	derived_data/all_predictive_data.csv\
 	scripts/train_test_elasticnet_GDP.R
