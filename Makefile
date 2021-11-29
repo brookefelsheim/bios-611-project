@@ -26,8 +26,6 @@ all: report.pdf\
 	derived_data/yearly_happiness.csv\
 	derived_data/long_yearly_happiness.csv\
 	derived_data/all_predictive_data.csv\
-	figures/emissions_pc_plot.png\
-	logs/emissions_pc_summary.txt\
 	figures/ghg_emissions_trends_top_10_plot.png\
 	logs/top_10_countries_emissions.txt\
 	figures/paired_indicators.png\
@@ -59,7 +57,6 @@ shiny_app: derived_data/long_yearly_emissions.csv\
 	Rscript scripts/shiny_app.R ${PORT}
 
 report.pdf: report.Rmd\
-	figures/emissions_pc_plot.png\
 	figures/ghg_emissions_trends_top_10_plot.png\
 	build_report.R
 	Rscript build_report.R
@@ -183,10 +180,6 @@ derived_data/all_predictive_data.csv:\
 	derived_data/yearly_happiness.csv\
 	scripts/combine_all_predictive_data.R
 	Rscript scripts/combine_all_predictive_data.R
-
-figures/emissions_pc_plot.png logs/emissions_pc_summary.txt:\
-	derived_data/yearly_emissions.csv scripts/emissions_PCA.R
-	Rscript scripts/emissions_PCA.R
 
 figures/ghg_emissions_trends_top_10_plot.png logs/top_10_countries_emissions.txt:\
 	derived_data/yearly_emissions.csv scripts/explore_emissions_trends.R
