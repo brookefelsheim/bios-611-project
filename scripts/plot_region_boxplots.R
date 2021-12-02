@@ -5,6 +5,8 @@ source("scripts/helper_functions.R")
 
 ensure_dir("figures")
 
+pdf(NULL)
+
 all_predictive_data <- read_csv("derived_data/all_predictive_data.csv")
 
 plot1 <- ggplot(all_predictive_data, 

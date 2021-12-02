@@ -6,6 +6,8 @@ source("scripts/helper_functions.R")
 ensure_dir("figures")
 ensure_dir("outputs")
 
+pdf(NULL)
+
 all_predictive_data <- read_csv("derived_data/all_predictive_data.csv")
 
 pc <- prcomp(scale(all_predictive_data[,3:8]))

@@ -3,6 +3,8 @@ source("scripts/helper_functions.R")
 
 ensure_dir("figures")
 
+pdf(NULL)
+
 yearly_emissions <- read_csv("derived_data/yearly_emissions.csv")
 
 long_yearly_emissions <- yearly_emissions %>%

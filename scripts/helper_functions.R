@@ -7,6 +7,7 @@ ensure_dir <- function(dir) {
 }
 
 plot_ROC <- function(perf1, perf2, a1, a2, set1, set2) {
+  pdf(NULL)
   data <- rbind(data.frame(Curve = paste0(set1, " (AUC = ", a1, ")"),
                            FalsePositive = perf1@x.values[[1]],
                            TruePositive = perf1@y.values[[1]]),
@@ -21,6 +22,7 @@ plot_ROC <- function(perf1, perf2, a1, a2, set1, set2) {
 }
 
 plot_coef <- function(model) {
+  pdf(NULL)
   model_coef <- data.frame(Coefficient = model$coefnames,
                            Value = summary(predict(model$finalModel, 
                                                    type = "coefficients", 
