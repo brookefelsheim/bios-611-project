@@ -1,3 +1,4 @@
+library(tidyverse)
 
 ensure_dir <- function(dir) {
   if(!dir.exists(dir)) {
@@ -6,18 +7,16 @@ ensure_dir <- function(dir) {
 }
 
 plot_ROC <- function(perf1, perf2, a1, a2, set1, set2) {
-  par(mai = c(0.75, 0.75, 0.15, 0.15), cex.axis = 1)
-  plot(perf1, col = "#00BFC4", lwd = 1.5, xlab = "", ylab = "", box.lwd = 0.6)
-  plot(perf2, col = "#F8766D", lwd = 1.5, add = T)
-  abline(a=0, b=1, lwd = 0.8)
-  mtext(side = 2, text = "True positive rate", at = 0.5, cex = 1, line = 2.2)
-  mtext(side = 1, text = "False positive rate", at = 0.5, cex = 1, line = 2)
-  legend(0.55, 0.15, legend = c(paste0(set1, " (AUC = ", a1, ")"), 
-                                   paste0(set2, " (AUC = ", a2, ")")), 
-         lty = c(1,1),lwd = c(1.5,1.5) ,
-         col = c("#00BFC4", "#F8766D"), cex = 1, bty = "n")
-  roc_plot <- recordPlot()
-  dev.off()
+  data <- rbind(data.frame(Curve = paste0(set1, " (AUC = ", a1, ")"),
+                           FalsePositive = perf1@x.values[[1]],
+                           TruePositive = perf1@y.values[[1]]),
+                data.frame(Curve = paste0(set2, " (AUC = ", a2, ")"),
+                           FalsePositive = perf2@x.values[[1]],
+                           TruePositive = perf2@y.values[[1]]))
+  roc_plot <- ggplot(data, aes(x = FalsePositive, y = TruePositive, color = Curve)) + 
+    geom_line(size = 1.25) + theme_classic() + theme(legend.position = c(0.8, 0.2)) + 
+    xlab("False positive rate") + ylab("True positive rate") + 
+    geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "gray")
   return(roc_plot)
 }
 
