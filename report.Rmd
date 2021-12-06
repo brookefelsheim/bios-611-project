@@ -90,12 +90,16 @@ Next, I wanted to look to see if there were any correlations between different t
 
 ![Matrix of correlations between pairs of indicator data. Scatterplots between each pair of indicator data are displayed on the left, variable distribution is displayed on the diagonal, and Pearson correlations between each pair of indicator data are displayed on the right.]("figures/paired_indicators.png")
 
+## Principal components analysis of environmental indicator data
+
+I then performed principal components analysis on the six different environmental indicator types used in the correlation analysis in Figure 4 to get a better sense of the variation among these environmental indicators (that will later be used for training predictive models). The environmental indicator data across 142 countries was first scaled and centered, and then principal components analysis was performed, with the following summary:   
+
 ```{r}
 readRDS("outputs/environmental_indicator_pc_summary.rds")
 ```
+We can see that more than half (61.13%) of the variation in the dataset is accounted for by the first two principal components. I then reduced the dimensionality to these two components and plotted PC2 vs. PC1, coloring countries by region of the world (Figure 5). We can see that most countries have PC1 values < 2, but there are some outlying countries with higer PC1 values. Notably, the two countries with the highest PC1 values (Qatar and Iceland), are the same two countries with the highest energy consumption per capita we noted earlier (Figure 2). Many other countries with PC1 values > 2 are also some of the highest energy consumers in Figures 1 and 2, suggesting that much of the variation in PC1 is driven by energy consumption. While there are not any strong groupings of country by region of the world seen in Figure 5, it can be noted that many of the outliers along PC1 come from the Middle East and Northern Africa. The countries along PC2 are a lot more evenly distributed, with Bhutan being the largest outlier (PC2 < -3). It remains unclear what factors might be driving most of the variation along PC2; this variation could be further explored in future analyses.
 
-
-![Environmental indicator PCA]("figures/environmental_indicator_pc_plot")
+![Plot of first two principal components colored by region of the world from principal components analysis of environmental indicator data]("figures/environmental_indicator_pc_plot")
 
 ## Prediction of happiness level from environmental indicator data
 
