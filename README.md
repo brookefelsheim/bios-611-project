@@ -70,35 +70,35 @@ docker run -v $(pwd):/home/rstudio/project -p 8080:8080 -it project-env sudo -H 
 
 ## Makefile
 
-All derived datasets and figures for this project can be found in the Makefile.    
+All derived outputs used in the analysis of this project can be found in the Makefile.    
 
-To utilize the Makefile to build these elements from the source data, first follow the instructions above to either run a bash shell or Rstudio instance. Then, follow the below instructions on how to use the Makefile.
-
-**Make all derived datasets and figrues**    
-
-To make the report and all of the derived datasets, figures, and logs for this analysis from the source data (excluding the Rshiny app - see instructions for running that below), run the following command in your terminal:
-```
-make all
-```
-
-**Make an individual file**     
-
-To make an individual file of interest from the source data that is listed as a target in the Makefile, run the following command in your terminal, substituting `figures/emissions_pc_plot.png` for the file of interest:     
-```
-make figures/emissions_pc_plot.png
-```
+To utilize the Makefile to build output elements from the source data, first follow the instructions above to either run a bash shell or Rstudio instance. Then, follow the below instructions on how to use the Makefile.
 
 **Make the Rshiny app**
 
-This project contains an interactive Rshiny app that plots CO2 emissions by year for a country of interest selected via a drop-down menu. To run the Rshiny app, run the following command in your terminal:
+This project contains an interactive Rshiny app that plots a variety of indicator trends for 190 different countries of interest selected via a drop-down menu. To run the Rshiny app, run the following command in your terminal:
 ```
 PORT=8080 make shiny_app
 ```
 Then, connect to the machine on port 8080 by entering localhost:8080 in your browser.
 
+**Make the project report**    
+
+The project report contains a summary of the analysis results and figures. To make the project report from the source data, run the following command in your terminal:
+```
+make report.pdf
+```
+
+**Make an individual file**     
+
+To make an individual file of interest from the source data that is listed as a target in the Makefile, run the following command in your terminal, substituting `figures/paired_indicators.png` for the file of interest:     
+```
+make figures/paired_indicators.png
+```
+
 **Clean all derived data**
 
-To clean all of the derived files (datasets, figures, logs) from your repository, run the following command in your terminal:
+To clean all of the derived files (datasets, figures, etc.) from your repository, run the following command in your terminal:
 ```
 make clean
 ```
