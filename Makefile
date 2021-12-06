@@ -29,6 +29,7 @@ all: report.pdf\
 	derived_data/all_predictive_data.csv\
 	figures/ghg_emissions_trends_top_10_plot.png\
 	figures/top_10_energy_per_capita_countries.png\
+	figures/top_10_energy_countries.png\
 	figures/paired_indicators.png\
 	figures/region_boxplots.png\
 	figures/environmental_indicator_pc_plot.png\
@@ -206,6 +207,12 @@ figures/top_10_energy_per_capita_countries.png:\
 	derived_data/long_yearly_renewable_percentage.csv\
 	scripts/plot_energy_per_capita_top_10_countries.R
 	Rscript scripts/plot_energy_per_capita_top_10_countries.R
+
+figures/top_10_energy_countries.png:\
+	derived_data/long_yearly_energy.csv\
+	derived_data/long_yearly_renewable_percentage.csv\
+	scripts/plot_energy_top_10_countries.R
+	Rscript scripts/plot_energy_top_10_countries.R
 
 figures/paired_indicators.png:\
 	derived_data/all_predictive_data.csv\
