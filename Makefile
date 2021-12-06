@@ -59,7 +59,8 @@ shiny_app: derived_data/long_yearly_emissions.csv\
 	Rscript scripts/shiny_app.R ${PORT}
 
 report.pdf: report.Rmd\
-	figures/ghg_emissions_trends_top_10_plot.png\
+	figures/top_10_energy_per_capita_countries.png\
+	figures/top_10_energy_countries.png\
 	figures/environmental_indicator_pc_plot.png\
 	figures/paired_indicators.png\
 	figures/region_boxplots.png\
