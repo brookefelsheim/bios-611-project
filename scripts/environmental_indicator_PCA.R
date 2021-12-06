@@ -17,7 +17,7 @@ saveRDS(summary(pc), "outputs/environmental_indicator_pc_summary.rds")
 pc_data <- cbind(all_predictive_data[,1:2], pc$x) %>% as_tibble()
 
 pc_plot <- ggplot(pc_data, aes(PC1,PC2)) + geom_point(aes(color = Region)) + 
-  geom_text(data = subset(pc_data, PC1 > 2 & PC2 < 2),
+  geom_text(data = subset(pc_data, (PC1 > 2 & PC2 < 2) | (PC2 < -3)),
             aes(PC1, PC2, label = Country),
             hjust = 0, nudge_x = 0.2) + xlim(c(-2, 10)) + 
   xlab(paste0("PC1 (", round(summary(pc)$importance[2,1],4)*100, "%)")) + 
