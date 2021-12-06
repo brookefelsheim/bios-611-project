@@ -78,6 +78,12 @@ Next, I looked at energy consumption trends of the ten countries with the highes
 
 ![Energy trends for top ten energy-consuming countries per capita. **(a)** Energy consumption per capita by country over time. **(b)** Percent of total energy consumed that is renewable by country over time.]("figures/top_10_energy_per_capita_countries.png")
 
+## Regional economic and happiness trends
+
+I then wanted to look at some trends in the economic and happiness indicator data. To see if there are regional patterns in a country's economic output and estimated happiness level, I plotted the GDP per capita (Figure 3a) and happiness level (Figure 3b) of 142 countries in 2018, grouped by region of the world. From these plots, we can see that the three regions with the highest happiness levels (Australia and New Zealand, North America, and Western Europe) are also the three regions with the highest GDP per capita. While we can generally observe similar patterns between the two plots, we do see that there are some differences. Latin America and Caribbean, for example, had a relatively higher happiness than GDP, while Eastern Asia had a relatively higher GDP than happiness.
+
+![Boxplots displaying **(a)** estimated happiness scores and **(b)** gross domestic product per capita of countries grouped by region of the world.]("figures/region_boxplots.png")
+
 ## Exploration of trends between indicators
 
 ![Paired indicators]("figures/paired_indicators.png")
@@ -88,8 +94,6 @@ readRDS("outputs/environmental_indicator_pc_summary.rds")
 
 
 ![Environmental indicator PCA]("figures/environmental_indicator_pc_plot")
-
-![Region boxplots]("figures/region_boxplots.png")
 
 ## Prediction of happiness level from environmental indicator data
 
