@@ -2,7 +2,10 @@
 title: "BIOS 611 Project Report"
 subtitle: "Global Indicator Data Analysis"
 author: "Brooke Felsheim"
-output: pdf_document
+output: 
+  pdf_document:
+    extra_dependencies:
+      caption: ["labelfont={bf}"]
 urlcolor: blue
 ---
 
