@@ -10,7 +10,7 @@ urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 # 1. Introduction
@@ -74,7 +74,9 @@ First, I looked at energy consumption trends of the ten countries with the highe
 
 ![Energy consumption trends for top ten energy-consuming countries. **(a)** Total energy consumption by country over time. **(b)** Percent of total energy consumed that is renewable by country over time. ]("figures/top_10_energy_countries.png")
 
-![Energy trends for top ten energy-consuming countries per capita]("figures/top_10_energy_per_capita_countries.png")
+Next, I looked at energy consumption trends of the ten countries with the highest levels of energy consumption per capita between 1990-2017 (Figure 2). Countries were ranked by their highest year of energy consumption in gigajoules per capita over the 27 year period. Interestingly, none of the top ten energy-consuming countries per capita overlapped with the top ten total energy-consuming countries. For the top ten energy-consuming countires per capita, I then plotted the energy consumption per capita by year (Figure 2a) along with the percent of total energy consumption that is renewable by year (Figure 2b). We can see from these plots that the two countries with the highest energy consumption per capita as of 2017 are Iceland and Qatar. Iceland's energy consumption per capita has been steadily increasing over time, while Qatar's energy consumption per capita experienced a sharp increase followed by a general decrease over time. We also see that almost all of Iceland's energy comes from renewable sources, which makes sense as it is home to many volcanoes and hot springs that can be used for geothermal energy. On the other hand, we see that almost none of Qatar's energy comes from renewable sources, which also makes sense as it is home to some of the world's largest natural gas and oil reserves.
+
+![Energy trends for top ten energy-consuming countries per capita. **(a)** Energy consumption per capita by country over time. **(b)** Percent of total energy consumed that is renewable by country over time.]("figures/top_10_energy_per_capita_countries.png")
 
 ## Exploration of trends between indicators
 
