@@ -27,7 +27,6 @@ all: report.pdf\
 	derived_data/yearly_happiness.csv\
 	derived_data/long_yearly_happiness.csv\
 	derived_data/all_predictive_data.csv\
-	figures/ghg_emissions_trends_top_10_plot.png\
 	figures/top_10_energy_per_capita_countries.png\
 	figures/top_10_energy_countries.png\
 	figures/paired_indicators.png\
@@ -198,10 +197,6 @@ derived_data/all_predictive_data.csv:\
 	derived_data/yearly_happiness.csv\
 	scripts/combine_all_predictive_data.R
 	Rscript scripts/combine_all_predictive_data.R
-
-figures/ghg_emissions_trends_top_10_plot.png:\
-	derived_data/yearly_emissions.csv scripts/explore_emissions_trends.R
-	Rscript scripts/explore_emissions_trends.R
 
 figures/top_10_energy_per_capita_countries.png:\
 	derived_data/long_yearly_energy_per_capita.csv\
