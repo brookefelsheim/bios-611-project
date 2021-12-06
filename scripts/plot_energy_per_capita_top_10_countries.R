@@ -16,7 +16,8 @@ supply_plot <- ggplot(long_yearly_energy_per_capita %>%
                      filter(Country %in% highest_10_countries_per_capita),
                    aes(x = Year, y = `Energy per capita`)) + 
   geom_point(aes(color = Country)) + 
-  geom_line(aes(color = Country)) + theme_bw()
+  geom_line(aes(color = Country)) + theme_bw() +
+  ylab("Energy supply\n(Gigajoules per capita)")
 
 long_yearly_renewable_percentage <- read_csv("derived_data/long_yearly_renewable_percentage.csv")
 
@@ -24,9 +25,11 @@ renewable_plot <- ggplot(long_yearly_renewable_percentage %>%
                            filter(Country %in% highest_10_countries_per_capita),
                          aes(x = Year, y = Percent)) + 
   geom_point(aes(color = Country)) + 
-  geom_line(aes(color = Country)) + theme_bw() + ylab("Percent renewable energy (of total energy)")
+  geom_line(aes(color = Country)) + theme_bw() + 
+  ylab("Renewable energy usage\n(% of total supply)")
 
-energy_per_capita_plot <- ggarrange(supply_plot, renewable_plot, labels = c("A", "B"), ncol = 2, nrow = 1,
+energy_per_capita_plot <- ggarrange(supply_plot, renewable_plot, 
+                                    labels = c("A", "B"), ncol = 2, nrow = 1,
                     common.legend = TRUE, legend = "right")
 
 ggsave("figures/top_10_energy_per_capita_countries.png", 

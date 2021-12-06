@@ -16,7 +16,8 @@ supply_plot <- ggplot(long_yearly_energy %>%
                         filter(Country %in% highest_10_countries),
                       aes(x = Year, y = Energy)) + 
   geom_point(aes(color = Country)) + 
-  geom_line(aes(color = Country)) + theme_bw() 
+  geom_line(aes(color = Country)) + theme_bw() +
+  ylab("Energy supply\n(Petajoules)")
 
 long_yearly_renewable_percentage <- read_csv("derived_data/long_yearly_renewable_percentage.csv")
 
@@ -25,7 +26,7 @@ renewable_plot <- ggplot(long_yearly_renewable_percentage %>%
                          aes(x = Year, y = Percent)) + 
   geom_point(aes(color = Country)) + 
   geom_line(aes(color = Country)) + theme_bw() + 
-  ylab("Percent renewable energy (of total energy)")
+  ylab("Renewable energy usage\n(% of total supply)")
 
 energy_plot <- ggarrange(supply_plot, renewable_plot, 
                                     labels = c("A", "B"), ncol = 2, nrow = 1,
