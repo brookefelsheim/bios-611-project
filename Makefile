@@ -62,6 +62,11 @@ report.pdf: report.Rmd\
 	figures/region_boxplots.png\
 	figures/happiness_elasticnet_figures.png\
 	figures/GDP_elasticnet_figures.png\
+	outputs/environmental_indicator_pc_summary.rds\
+	outputs/happiness_elasticnet_model.rds\
+	outputs/happiness_elasticnet_coefficients.rds\
+	outputs/GDP_elasticnet_model.rds\
+	outputs/GDP_elasticnet_coefficients.rds\
 	build_report.R
 	Rscript build_report.R
 

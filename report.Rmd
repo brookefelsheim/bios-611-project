@@ -67,15 +67,37 @@ As an example, we can look at all of the indicator plots generated for Sweden in
 
 ![Paired indicators]("figures/paired_indicators.png")
 
+```{r}
+readRDS("outputs/environmental_indicator_pc_summary.rds")
+```
+
+
 ![Environmental indicator PCA]("figures/environmental_indicator_pc_plot")
 
 ![Region boxplots]("figures/region_boxplots.png")
 
 ## Prediction of happiness level from environmental indicator data
 
+```{r}
+readRDS("outputs/happiness_elasticnet_model.rds")
+```
+
+```{r}
+readRDS("outputs/happiness_elasticnet_coefficients.rds")
+```
+
+
 ![Happiness predictor]("figures/happiness_elasticnet_figures.png")
 
 ## Prediction of GDP level from environmental indicator data
+
+```{r}
+readRDS("outputs/GDP_elasticnet_model.rds")
+```
+
+```{r}
+readRDS("outputs/GDP_elasticnet_coefficients.rds")
+```
 
 ![GDP predictor]("figures/GDP_elasticnet_figures.png")
 
