@@ -17,7 +17,7 @@ supply_plot <- ggplot(long_yearly_energy_per_capita %>%
                    aes(x = Year, y = `Energy per capita`)) + 
   geom_point(aes(color = Country)) + 
   geom_line(aes(color = Country)) + theme_bw() +
-  ylab("Energy consumption\n(Gigajoules per capita)")
+  ylab("Energy supply\n(Gigajoules per capita)")
 
 long_yearly_renewable_percentage <- read_csv("derived_data/long_yearly_renewable_percentage.csv")
 
