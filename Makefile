@@ -5,41 +5,6 @@ clean:
 	rm -rf outputs/
 	rm -f report.pdf
 
-.PHONY: all
-all: report.pdf\
-	derived_data/yearly_emissions.csv\
-	derived_data/long_yearly_emissions.csv\
-	derived_data/long_sector_emissions.csv\
-	derived_data/long_yearly_forest_area.csv\
-	derived_data/yearly_hazardous_waste.csv\
-	derived_data/long_yearly_hazardous_waste.csv\
-	derived_data/long_yearly_municipal_recycled.csv\
-	derived_data/natural_disaster_occurrences.csv\
-	derived_data/long_natural_disaster_occurrences.csv\
-	derived_data/natural_disaster_deaths.csv\
-	derived_data/long_natural_disaster_deaths.csv\
-	derived_data/long_yearly_energy_per_capita.csv\
-	derived_data/long_yearly_energy.csv\
-	derived_data/long_yearly_renewable_percentage.csv\
-	derived_data/long_yearly_precipitation.csv\
-	derived_data/long_yearly_gdp.csv\
-	derived_data/long_yearly_gni_by_gender.csv\
-	derived_data/yearly_happiness.csv\
-	derived_data/long_yearly_happiness.csv\
-	derived_data/all_predictive_data.csv\
-	figures/top_10_energy_per_capita_countries.png\
-	figures/top_10_energy_countries.png\
-	figures/paired_indicators.png\
-	figures/region_boxplots.png\
-	figures/environmental_indicator_pc_plot.png\
-	outputs/environmental_indicator_pc_summary.rds\
-	figures/happiness_elasticnet_figures.png\
-	outputs/happiness_elasticnet_model.rds\
-	outputs/happiness_elasticnet_coefficients.rds\
-	figures/GDP_elasticnet_figures.png\
-	outputs/GDP_elasticnet_model.rds\
-	outputs/GDP_elasticnet_coefficients.rds
-
 .PHONY: shiny_app
 shiny_app: derived_data/long_yearly_emissions.csv\
 	derived_data/long_sector_emissions.csv\
