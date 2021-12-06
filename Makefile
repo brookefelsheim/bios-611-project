@@ -19,6 +19,7 @@ all: report.pdf\
 	derived_data/natural_disaster_deaths.csv\
 	derived_data/long_natural_disaster_deaths.csv\
 	derived_data/long_yearly_energy_per_capita.csv\
+	derived_data/long_yearly_energy.csv\
 	derived_data/long_yearly_renewable_percentage.csv\
 	derived_data/long_yearly_precipitation.csv\
 	derived_data/long_yearly_gdp.csv\
@@ -145,6 +146,11 @@ derived_data/long_yearly_energy_per_capita.csv:\
 	source_data/energy_and_minerals/energy_supply_per_capita.csv\
 	scripts/lengthen_yearly_energy_per_capita.R
 	Rscript scripts/lengthen_yearly_energy_per_capita.R
+
+derived_data/long_yearly_energy.csv:\
+	source_data/energy_and_minerals/energy_supply.csv\
+	scripts/lengthen_yearly_energy.R
+	Rscript scripts/lengthen_yearly_energy.R
 
 derived_data/long_yearly_renewable_percentage.csv:\
 	source_data/energy_and_minerals/renewable_elec_production_percentage.csv\
