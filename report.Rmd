@@ -10,29 +10,54 @@ urlcolor: blue
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduction
+# 1. Introduction
 
 The future existence of humankind is dependent on our ability to live sustainably. As human populations rise along with greenhouse gas emissions, deforestation rates, and generation of waste, we will continue to deplete natural resources, disrupt ecosystems, and increase global temperatures, leading to an unsustainable future. Because of this, it is critical to study environmental indicators to assess the current state and trajectory of the environment.    
 
 For my BIOS 611 project, I chose to analyze global environmental indicator data along with global economic and happiness indicator data. My goal was to assess recent environmental trends of countries around the world and to see how these trends might correspond with the state of the economy and measured levels of happiness within the countries.
 
-## Source data description
+# 2. Source data description
 
 There were three types of source data sets used for this analysis: environmental indicator data, economic indicator data, and happiness indicator data. Each data type contains quantitative indicator measures by country and year.
 
-### Environmental indicator data
+## Environmental indicator data
 
 The environmental indicator source data come from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics. The data were downloaded via Kaggle [here][data1] (last updated June 5, 2021). Multiple types of environmental indicator data were used in this analysis and fall under the categories of air and climate, biodiversity, energy, forest, inland water resources, land and agriculture, natural disasters, and waste. Environmental indicator data are available within the year range 1990-2020.
 
-### Economic indicator data
+## Economic indicator data
 
 The economic indicator source data come from the UNSD Human Development Report and were downloaded via Kaggle [here][data2] (last updated August 11, 2020). The primary measure of economic activity used for this analysis was gross domestic product (GDP) by country. Economic indicator data are available within the year range 1990-2018.
 
-### Happiness indicator data
+## Happiness indicator data
 
 The happiness indicator data come from the World Happiness Report published by the Sustainable Development Solutions Network. The data were downloaded via Kaggle [here][data3] (last updated November 26, 2019). Each country is given a "happiness score" (0 to 10) that is based on life evaluation survey responses. Happiness indicator data are available within the year range 2015-2019.
 
-## Exploration of indicator trends by country
+# 3. Results
+
+## Exploration of indicator trends within countries
+
+The first goal of my analysis was to explore trends of indicator data within individual countries. To achieve this goal, I created an interactive R shiny app that plots many different types indicator data over time for 190 different countries. The country of interest can first be selected via a drop-down menu in the app. For the selected country, thirteen different types of plots are generated:     
+
+* Environmental indicator plots
+    + Greenhouse gas emissions by type over time
+    + Greenhouse gas emissions by sector
+    + Energy supply per capita over time
+    + Renewable energy production percentage over time
+    + Forest area over time
+    + Precipitation over time
+    + Natural disaster occurrences over time
+    + Natural disaster deaths over time
+    + Hazardous waste by type over time
+    + Municipal waste recycled over time
+
+* Economic indicator plots
+    + Gross domestic product per capita over time
+    + Gross national income by gender over time
+
+* Happiness indicator plots
+    + Happiness score over time
+
+
 
 ![Emissions over time]("figures/ghg_emissions_trends_top_10_plot.png")
 
@@ -52,9 +77,9 @@ The happiness indicator data come from the World Happiness Report published by t
 
 ![GDP predictor]("figures/GDP_elasticnet_figures.png")
 
-## Conclusions
+# 4. Conclusions
 
-## Further exploration
+# 5. Further exploration
 
 ***
 
