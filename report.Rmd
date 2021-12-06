@@ -1,7 +1,9 @@
 ---
-title: "Project Report"
+title: "BIOS 611 Project Report"
+subtitle: "Global Indicator Data Analysis"
 author: "Brooke Felsheim"
 output: pdf_document
+urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +16,21 @@ The future existence of humankind is dependent on our ability to live sustainabl
 
 For my BIOS 611 project, I chose to analyze global environmental indicator data along with global economic and happiness indicator data. My goal was to assess recent environmental trends of countries around the world and to see how these trends might correspond with the state of the economy and measured levels of happiness within the countries.
 
-## Data sets used
+## Source data description
+
+There were three types of source data sets used for this analysis: environmental indicator data, economic indicator data, and happiness indicator data. Each data type contains quantitative indicator measures by country and year.
+
+### Environmental indicator data
+
+The environmental indicator source data come from the United Nations Statistics Division (UNSD) / United Nations Environment Programme (UNEP) Questionairre on Environment Statistics. The data were downloaded via Kaggle [here][data1] (last updated June 5, 2021). Multiple types of environmental indicator data were used in this analysis and fall under the categories of air and climate, biodiversity, energy, forest, inland water resources, land and agriculture, natural disasters, and waste. Environmental indicator data are available within the year range 1990-2020.
+
+### Economic indicator data
+
+The economic indicator source data come from the UNSD Human Development Report and were downloaded via Kaggle [here][data2] (last updated August 11, 2020). The primary measure of economic activity used for this analysis was gross domestic product (GDP) by country. Economic indicator data are available within the year range 1990-2018.
+
+### Happiness indicator data
+
+The happiness indicator data come from the World Happiness Report published by the Sustainable Development Solutions Network. The data were downloaded via Kaggle [here][data3] (last updated November 26, 2019). Each country is given a "happiness score" (0 to 10) that is based on life evaluation survey responses. Happiness indicator data are available within the year range 2015-2019.
 
 ## Exploration of indicator trends by country
 
@@ -40,3 +56,8 @@ For my BIOS 611 project, I chose to analyze global environmental indicator data 
 
 ## Further exploration
 
+***
+
+[data1]:https://www.kaggle.com/ruchi798/global-environmental-indicators
+[data2]:https://www.kaggle.com/frankmollard/income-by-country
+[data3]:https://www.kaggle.com/unsdsn/world-happiness
