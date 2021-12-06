@@ -190,7 +190,7 @@ server <- function(input, output) {
              filter(Country == input$country),
            aes(x = Year, y = GDP_per_capita)) +
       geom_point(color="#00BA38") + geom_line(color="#00BA38") + 
-      ylab("Gross Domestic Product per capita") + theme_bw() +
+      ylab("Gross Domestic Product per capita\n(Purchasing power parity $)") + theme_bw() +
       ggtitle(paste0("Gross Domestic Product per Capita by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
@@ -201,7 +201,7 @@ server <- function(input, output) {
              filter(Country == input$country),
            aes(x = Year, y = GNI)) +
       geom_point(aes(color=Gender)) + geom_line(aes(color=Gender)) + theme_bw() +
-      ylab("Gross National Income") +
+      ylab("Gross National Income\n(Purchasing power parity $)") +
       ggtitle(paste0("Gross National Income by Year\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
