@@ -11,7 +11,7 @@ all_predictive_data <- read_csv("derived_data/all_predictive_data.csv")
 
 plot <- ggpairs(all_predictive_data[,-1:-2], 
                 columnLabels = c("GHG emissions\n(kg per capita)", 
-                                 "Energy supply\n (GJ per capita)",
+                                 "Energy consumption\n (GJ per capita)",
                                  "Renewable energy\n(% of total)",
                                  "Agricultural area\n(%)", 
                                  "Forest area\n(%)",
