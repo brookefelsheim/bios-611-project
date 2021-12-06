@@ -144,7 +144,7 @@ server <- function(input, output) {
     ggplot(long_natural_disaster_occurrences %>%
              filter(Country == input$country),
            aes(x = `Year range`, fill = Type, y = Occurrences)) + 
-      geom_bar(stat = "identity") + 
+      geom_bar(position="dodge", stat = "identity") + 
       ggtitle(paste0("Natural Disaster Occurrences by Year Range\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
@@ -155,7 +155,7 @@ server <- function(input, output) {
     ggplot(long_natural_disaster_deaths %>%
              filter(Country == input$country),
            aes(x = `Year range`, fill = Type, y = Deaths)) + 
-      geom_bar(stat = "identity") + 
+      geom_bar(position="dodge", stat = "identity") + 
       ggtitle(paste0("Natural Disaster Deaths by Year Range\n", input$country)) +
       theme(axis.text = element_text(size = 16),
             axis.title = element_text(size = 17, face="bold"),
