@@ -112,7 +112,7 @@ We can see that the optimal values chosen for the model were $\alpha = 0.1$, mea
 readRDS("outputs/happiness_elasticnet_coefficients.rds")
 ```
 
-![Happiness predictor]("figures/happiness_elasticnet_figures.png")
+![Happiness elastic net predictive model. (a) Receiver operating characteristic curves illustrating the performance of the model on the training and testing sets. (b) Dot plot showing the variable coefficient values of the trained model. ]("figures/happiness_elasticnet_figures.png")
 
 We see that the highest model coefficient is greenhouse gas emissions per capita, meaning that this variable contributes the most to the classification of a country's happiness level. This makes sense, as we saw that happiness and greenhouse gas emissions were strongly correlated in Figure 4. Because the coefficient is positive, this suggests that countries with higher greenhouse gas emissions per capita tend to be happier. The only negative coefficient was protected area percent, suggesting that countries with less protected areas tend to be happier. It is important to keep in mind that correlation does not equal causation, and there may be confounding variables at play (e.g. a country's economy, which we will explore later). We can see that this model performs very well on the testing data, with an area under the receiver operating characteristic curve (AUC) of 0.83 (Figure 6a). This suggests that a country's happiness level can be accurately predicted from environmental indicator data.
 
@@ -130,7 +130,7 @@ We can see that the optimal values chosen for the model were $\alpha = 1$, meani
 readRDS("outputs/GDP_elasticnet_coefficients.rds")
 ```
 
-![GDP predictor]("figures/GDP_elasticnet_figures.png")
+![GDP elastic net predictive model. (a) Receiver operating characteristic curves illustrating the performance of the model on the training and testing sets. (b) Dot plot showing the variable coefficient values of the trained model.]("figures/GDP_elasticnet_figures.png")
 
 Just as in the happiness model, we again see that the highest model coefficient is greenhouse gas emissions per capita, meaning that this variable contributes the most to the classification of a country's GDP level. This corresponds with the strong correlation between GDP and greenhouse gas emissions in Figure 4. Because the coefficient is positive, this suggests that countries with higher greenhouse gas emissions per capita tend to have higher GDP. Logically, this makes sense, because wealthier countries can afford to pollute more. Because a country's GDP and happiness score were also strongly correlated in Figure 4, this may also give additional insight into why high greenhouse gas emissions was a strong predictor for happiness. There were only two negative coefficients in the model: renewable energy percent and agricultural area percent, suggesting that countries with less renewable energy and agricultural area tend to be wealthier. We can see that this model performs very well on the testing data, with an area under the receiver operating characteristic curve (AUC) of 0.93 (Figure 7a). This suggests that a country's GDP level can be accurately predicted from environmental indicator data.
 
