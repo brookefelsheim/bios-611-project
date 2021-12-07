@@ -33,9 +33,11 @@ This analysis takes three primary forms:
 
   **1. Indicator data trends by country**. This analysis is carried out in the shiny app, where a user can select a country and view many types of plots displaying indicator data trends.     
   
-  **2. Indicator data trends for all countries**.     
+  **2. Indicator data trends between all countries**. Various analyses are carried out that search for indicator trends among all available countries.      
   
-  **3. Prediction of happiness and GDP level from environmental indicator data**.     
+  **3. Prediction of happiness and GDP level from environmental indicator data**. Two elastic net predictive models were generated to predict high/low happiness level and high/low GDP level from environmental indicator.     
+  
+More detailed descriptions about the analyses for this project were carried out, along with summaries of their results, can be found in the project report (report.pdf).
 
 ## Docker
 
