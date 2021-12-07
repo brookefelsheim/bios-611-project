@@ -2,10 +2,7 @@
 title: "BIOS 611 Project Report"
 subtitle: "Global Indicator Data Analysis"
 author: "Brooke Felsheim"
-output: 
-  pdf_document:
-    extra_dependencies:
-      caption: ["labelfont={bf}"]
+output: pdf_document
 urlcolor: blue
 ---
 
@@ -72,17 +69,17 @@ While the R shiny app displayed various indicator trends over time for individua
 
 First, I looked at energy consumption trends of the ten countries with the highest total levels of energy consumption between 1990-2017 (Figure 1). Countries were ranked by their highest year of energy consumption in petajoules over the 27 year period. For the top ten energy-consuming countries, I then plotted the total energy consumption by year (Figure 1a) along with the percent of total energy consumption that is renewable by year (Figure 1b). From these plots, we can see that there are two countries with a much higher level of energy consumption than any other country: the United States and China. The United States started as the highest energy-consuming country in 1990, and the amount of energy consumed per year has remained approximately steady since then. Meanwhile, we see that China's energy consumption has greatly increased from 1990 to 2017, surpassing the United States in 2009 as the highest energy-consuming country. While the United States and China are by far the most energy-consuming countries, less than 25% of the energy they consume is renewable. We can see that of the ten countries with the highest total energy consumption, only Brazil and Canada source more than 50% of their total energy from renewable sources.
 
-![Energy consumption trends for top ten energy-consuming countries. **(a)** Total energy consumption by country over time. **(b)** Percent of total energy consumed that is renewable by country over time. ]("figures/top_10_energy_countries.png")
+![Energy consumption trends for top ten energy-consuming countries. (a) Total energy consumption by country over time. (b) Percent of total energy consumed that is renewable by country over time. ]("figures/top_10_energy_countries.png")
 
 Next, I looked at energy consumption trends of the ten countries with the highest levels of energy consumption per capita between 1990-2017 (Figure 2). Countries were ranked by their highest year of energy consumption in gigajoules per capita over the 27 year period. Interestingly, none of the top ten energy-consuming countries per capita overlapped with the top ten total energy-consuming countries. For the top ten energy-consuming countires per capita, I then plotted the energy consumption per capita by year (Figure 2a) along with the percent of total energy consumption that is renewable by year (Figure 2b). We can see from these plots that the two countries with the highest energy consumption per capita as of 2017 are Iceland and Qatar. Iceland's energy consumption per capita has been steadily increasing over time, while Qatar's energy consumption per capita experienced a sharp increase followed by a general decrease over time. We also see that almost all of Iceland's energy comes from renewable sources, which makes sense as it is home to many volcanoes and hot springs that can be used for geothermal energy. On the other hand, we see that almost none of Qatar's energy comes from renewable sources, which also makes sense as it is home to some of the world's largest natural gas and oil reserves.
 
-![Energy trends for top ten energy-consuming countries per capita. **(a)** Energy consumption per capita by country over time. **(b)** Percent of total energy consumed that is renewable by country over time.]("figures/top_10_energy_per_capita_countries.png")
+![Energy trends for top ten energy-consuming countries per capita. (a) Energy consumption per capita by country over time. (b) Percent of total energy consumed that is renewable by country over time.]("figures/top_10_energy_per_capita_countries.png")
 
 ## Regional economic and happiness trends
 
 I also wanted to look at trends in the economic and happiness indicator data. To see if there are regional patterns in a country's economic output and estimated happiness level, I plotted the GDP per capita (Figure 3a) and happiness level (Figure 3b) of 142 countries in 2018, grouped by region of the world. From these plots, we can see that the three regions with the highest happiness levels (Australia and New Zealand, North America, and Western Europe) are also the three regions with the highest GDP per capita. While we can generally observe similar patterns between the two plots, we do see that there are some differences. Latin America and Caribbean, for example, had a relatively higher happiness than GDP, while Eastern Asia had a relatively higher GDP than happiness.
 
-![Boxplots displaying **(a)** estimated happiness scores and **(b)** gross domestic product per capita of countries grouped by region of the world.]("figures/region_boxplots.png")
+![Boxplots displaying (a) estimated happiness scores and (b) gross domestic product per capita of countries grouped by region of the world.]("figures/region_boxplots.png")
 
 ## Correlations between indicator data
 
