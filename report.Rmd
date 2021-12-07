@@ -101,16 +101,21 @@ We can see that more than half (61.13%) of the variation in the dataset is accou
 
 ![Plot of first two principal components colored by region of the world from principal components analysis of environmental indicator data]("figures/environmental_indicator_pc_plot")
 
-## Prediction of happiness level from environmental indicator data
+## Elastic net prediction of happiness level from environmental indicator data
+
+We have seen from the exploratory analysis above that there are correlations between environmental indicators and happiness scores of a country. One question I had was whether I could train a model to predict a country's high vs. low happiness level from environmental indicator data with high performance accuracy. To answer this question, I chose to train an elastic net model for its ease of interpretability and ability to combine the L1 and L2 penalties of lasso and ridge regression models. For the predictors, I used the six environmental indicator types used in the correlation and principal component analyses (Figures 4 and 5). For the outcome to predict, I split countries into "High" and "Low" happiness levels based on whether its happiness score fell above or below the median happiness score. I trained on 60% of the data (n = 86) using 10-fold cross validation and the default tuning grid. The remaining 40% of the data (n = 56) was held out for testing. The trained model summary is printed below: 
 
 ```{r}
 readRDS("outputs/happiness_elasticnet_model.rds")
 ```
 
+We can see that the optimal values chosen for the model were $\alpha = 0.1$, meaning the model is closer to ridge regression than lasso regression, and $\lambda = 0.0005588992$. For these $\alpha$ and $\lambda$ parameters, we get the following trained coefficients for the model, shown below and plotted in Figure 6b:
+
 ```{r}
 readRDS("outputs/happiness_elasticnet_coefficients.rds")
 ```
 
+We see that the highest model coefficient is greenhouse gas emissions per capita, meaning that this variable contributes the most to the classification of a country's happiness level. This makes sense, as we saw that happiness and greenhouse gas emissions were strongly correlated in Figure 4. Because the coefficient is positive, this suggests that countries with higher greenhouse gas emissions per capita tend to be happier. The only negative coefficient was protected area percent, suggesting that countries with less protected areas tend to be happier. It is important to keep in mind that correlation does not equal causation, and there may be confounding variables at play (e.g. a country's economy, which we will explore later). We can see that this model performs very well on the testing data, with an area under the receiver operating characteristic curve (AUC) of 0.83 (Figure 6a). This suggests that a country's happiness level can be accurately predicted from environmental indicator data.
 
 ![Happiness predictor]("figures/happiness_elasticnet_figures.png")
 
