@@ -12,5 +12,3 @@ RUN R -e "install.packages('gridGraphics')"
 RUN R -e "install.packages('glmnet')"
 RUN R -e "install.packages('caret')"
 RUN R -e "install.packages('ROCR')"
-RUN tlmgr update --self
-RUN tlmgr install caption
