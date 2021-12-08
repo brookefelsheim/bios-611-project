@@ -57,7 +57,11 @@ docker build . -t project-env
 To run an Rstudio server, run the following command. Note that `your_password_here` should be replaced with your own unique password before running.     
 
 ```
-docker run -e PASSWORD=your_password_here --rm -p 8787:8787 -p 8080:8080 -v $(pwd):/home/rstudio/project -t project-env
+docker run -e PASSWORD=your_password_here \
+--rm \
+-p 8787:8787 -p 8080:8080 \
+-v $(pwd):/home/rstudio/project \
+-t project-env
 ```     
 
 Then, to connect to the machine on port 8787, enter localhost:8787 in your browser. Enter rstudio as the username along with the unique password you created. You will need to navigate to the `project` directory by entering `setwd("~/project")` in the R console and `cd ~/project` in the Terminal.
@@ -67,7 +71,12 @@ Then, to connect to the machine on port 8787, enter localhost:8787 in your brows
 To run a bash shell, run the following command.     
 
 ```
-docker run -v $(pwd):/home/rstudio/project -p 8080:8080 -it project-env sudo -H -u rstudio /bin/bash -c "cd ~/project/; /bin/bash"
+docker run -v $(pwd):/home/rstudio/project \
+-p 8080:8080 \
+-it project-env sudo \
+-H \
+-u rstudio /bin/bash \
+-c "cd ~/project/; /bin/bash"
 ```
 
 ## Makefile
